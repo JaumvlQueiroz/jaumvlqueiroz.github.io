@@ -698,13 +698,13 @@ df.to_csv("carga_municipios.csv", index=False)`,
 
   const USOS = {
     pandas: { nome: "Python e pandas", itens: [["MDS", "Fluxos de ETL que geram os arquivos de carga do VIS DATA"], ["MDS", "Pipelines orçamentários a partir do Tesouro Gerencial"], ["Projeto", "Análise exploratória da base Online Retail"], ["Projeto", "Modelo de previsão do Titanic"]] },
-    etl: { nome: "ETL e qualidade de dados", itens: [["MDS", "Ciclo de carga do Bolsa Família de agosto de 2026, com 154 registros barrados"], ["MDS", "Padronização do IGD-E publicado em 3 layouts diferentes"], ["MDS", "QA do novo Relatório de Informações"], ["Estágio", "Manutenção de bases e rotinas de dados"]] },
-    sql: { nome: "SQL", itens: [["Estágio", "Consultas e extração de dados em banco de dados"], ["Projeto", "Banco do portal do Bolsa Família e Cadastro Único"]] },
+    etl: { nome: "ETL e qualidade de dados", itens: [["MDS", "Ciclo de carga do Bolsa Família de agosto de 2026, com 154 registros barrados"], ["MDS", "Padronização do IGD-E publicado em 3 layouts diferentes"], ["MDS", "QA do novo Relatório de Informações"], ["Estágio no MDS", "Cruzamento e tratamento de bases de dados"]] },
+    sql: { nome: "SQL", itens: [["Estágio no MDS", "Consultas e extração de dados em banco de dados"], ["Projeto", "Banco do portal do Bolsa Família e Cadastro Único"]] },
     r: { nome: "R e Shiny", itens: [["MDS", "Manutenção de módulos do painel MonitoraMDS"]] },
     ml: { nome: "Machine learning", itens: [["Projeto", "Classificação com Gradient Boosting na base do Titanic"]] },
     colab: { nome: "Google Colab", itens: [["MDS", "Notebook único que reúne todas as rotinas de carga"]] },
     sqlite: { nome: "SQLite", itens: [["Projeto", "Banco com modelagem dimensional do portal do Bolsa Família e Cadastro Único"]] },
-    dbeaver: { nome: "DBeaver", itens: [["Estágio", "Consultas SQL e extração de dados"]] },
+    dbeaver: { nome: "DBeaver", itens: [["Estágio no MDS", "Consultas SQL e extração de dados"]] },
     react: { nome: "React", itens: [["Projeto", "Interface do portal do Bolsa Família e Cadastro Único"]] },
     fastapi: { nome: "FastAPI", itens: [["Projeto", "API do portal do Bolsa Família e Cadastro Único"]] }
   };
