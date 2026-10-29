@@ -8,12 +8,19 @@
 <meta property="og:title" content="João Vitor Queiroz | Dados">
 <meta property="og:description" content="ETL e qualidade de dados de programas sociais no MDS. Estudante de Ciência da Computação na UCB.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0A0B0A">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E3B23C'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' fill='%231E1A0C' text-anchor='middle'%3EJV%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#F3F5F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1116" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231D6B52'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' fill='%23FFFFFF' text-anchor='middle'%3EJV%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilos.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  try {
+    const tema = localStorage.getItem("tema");
+    if (tema === "light" || tema === "dark") document.documentElement.setAttribute("data-theme", tema);
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="estilos.css?v=2026-10-29b">
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -31,10 +38,13 @@
         <li><a href="#contato">Contato</a></li>
       </ul>
     </nav>
-    <a class="botao principal pequeno" href="curriculo.pdf?v=2026-10-26" download="Curriculo_JoaoVitorQueiroz.pdf" aria-label="Baixar currículo">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M5 21h14"/></svg>
-      <span class="texto">Currículo</span>
-    </a>
+    <div class="topo-acoes">
+      <button class="icone" id="tema" type="button" aria-label="Alternar tema"></button>
+      <a class="botao principal pequeno" href="curriculo.pdf?v=2026-10-26" download="Curriculo_JoaoVitorQueiroz.pdf" aria-label="Baixar currículo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M5 21h14"/></svg>
+        <span class="texto">Currículo</span>
+      </a>
+    </div>
   </div>
 </header>
 
@@ -304,12 +314,42 @@
       <div class="filtros" role="group" aria-label="Filtrar projetos">
         <button class="filtro" type="button" data-filtro="todos" aria-pressed="true">Todos</button>
         <button class="filtro" type="button" data-filtro="dados" aria-pressed="false">Dados</button>
+        <button class="filtro" type="button" data-filtro="sql" aria-pressed="false">SQL</button>
         <button class="filtro" type="button" data-filtro="web" aria-pressed="false">Web</button>
         <button class="filtro" type="button" data-filtro="ml" aria-pressed="false">Machine learning</button>
       </div>
     </div>
     <div class="projetos">
-      <article class="projeto" data-tipos="dados web">
+      <article class="projeto destaque" data-tipos="dados sql">
+        <div class="destaque-texto">
+          <span class="tipo">SQL e modelagem de banco de dados</span>
+          <h3>Análise de e-commerce com SQL</h3>
+          <p>Banco relacional montado a partir de dados públicos da Olist, com carga, modelagem, validação de qualidade e consultas analíticas escritas em SQL.</p>
+          <dl class="numeros-projeto">
+            <div><dt>1,5 mi</dt><dd>linhas carregadas</dd></div>
+            <div><dt>9</dt><dd>tabelas com chaves e restrições</dd></div>
+            <div><dt>12</dt><dd>verificações de qualidade</dd></div>
+            <div><dt>10</dt><dd>consultas de negócio</dd></div>
+          </dl>
+          <p class="achado">Uma das conclusões: com 4 a 7 dias de atraso na entrega, a nota média do cliente cai de 4,3 para 2,1.</p>
+          <ul class="tags"><li>SQL</li><li>SQLite</li><li>Window functions</li><li>Modelagem relacional</li><li>Qualidade de dados</li></ul>
+          <a class="ver" href="https://github.com/JaumvlQueiroz/ecommerce-sql-olist" target="_blank" rel="noopener">Ver código e resultados</a>
+        </div>
+        <div class="painel codigo trecho">
+          <div class="painel-topo"><span>top_vendedores_por_uf.sql</span><small>Trecho</small></div>
+          <pre><code><span class="tk-c">-- Top 3 vendedores por estado</span>
+<span class="tk-k">SELECT</span>
+    uf,
+    vendedor_id,
+    faturamento,
+    <span class="tk-k">RANK</span>() <span class="tk-k">OVER</span> (
+        <span class="tk-k">PARTITION BY</span> uf
+        <span class="tk-k">ORDER BY</span> faturamento <span class="tk-k">DESC</span>
+    ) <span class="tk-k">AS</span> posicao
+<span class="tk-k">FROM</span> por_vendedor;</code></pre>
+        </div>
+      </article>
+      <article class="projeto" data-tipos="dados web sql">
         <span class="tipo">Full-stack e modelagem de dados</span>
         <h3>Portal de gestão do Bolsa Família e Cadastro Único</h3>
         <p>Réplica de um portal de gestão municipal, com modelagem dimensional dos dados e protótipo mobile do painel do Cadastro Único com 88 variáveis mapeadas.</p>
@@ -423,6 +463,6 @@
 
 <div class="aviso-copia" id="aviso" role="status"></div>
 
-<script src="script.js"></script>
+<script src="script.js?v=2026-10-29b"></script>
 </body>
 </html>

@@ -2,6 +2,27 @@
   const reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const fmt = (n, casas) => n.toLocaleString("pt-BR", { minimumFractionDigits: casas, maximumFractionDigits: casas });
 
+  const raiz = document.documentElement;
+  const SOL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  const LUA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  const btnTema = document.getElementById("tema");
+  const temaEscuroDoSistema = matchMedia("(prefers-color-scheme: dark)");
+  const temaAtual = () => raiz.getAttribute("data-theme") || (temaEscuroDoSistema.matches ? "dark" : "light");
+  const aoMudarTema = [];
+  const mostrarTema = () => {
+    const escuro = temaAtual() === "dark";
+    btnTema.innerHTML = escuro ? SOL : LUA;
+    btnTema.setAttribute("aria-label", escuro ? "Usar tema claro" : "Usar tema escuro");
+    aoMudarTema.forEach((funcao) => funcao());
+  };
+  btnTema.addEventListener("click", () => {
+    const novo = temaAtual() === "dark" ? "light" : "dark";
+    raiz.setAttribute("data-theme", novo);
+    try { localStorage.setItem("tema", novo); } catch (e) {}
+    mostrarTema();
+  });
+  temaEscuroDoSistema.addEventListener("change", mostrarTema);
+
   const aviso = document.getElementById("aviso");
   let tempoAviso;
   const avisar = (texto) => {
@@ -43,7 +64,9 @@
   const canvas = document.getElementById("fluxo");
   const ctx = canvas.getContext("2d");
   const ROTULOS = ["Excel", "pandas", "Validação", "CSV", "VIS DATA"];
-  const COR = { linha: "#2C312B", no: "#121411", bruto: "#7D857B", ok: "#6FBF8E", ruim: "#F2865F", tinta: "#EDEEE8" };
+  const lerCor = (nome) => getComputedStyle(document.documentElement).getPropertyValue(nome).trim();
+  const lerCores = () => ({ linha: lerCor("--canvas-linha"), no: lerCor("--surface"), bruto: lerCor("--canvas-bruto"), ok: lerCor("--green"), ruim: lerCor("--flag"), tinta: lerCor("--ink") });
+  let COR = lerCores();
   const retidosEl = document.getElementById("retidos");
   let largura = 0, altura = 0, pontos = [], retidos = 0, acumulado = 0, rodando = false, anterior = 0;
 
@@ -94,7 +117,7 @@
       ctx.beginPath(); ctx.arc(p.x, y, p.r, 0, Math.PI * 2); ctx.fill();
     }
     ctx.globalAlpha = 1;
-    ctx.font = `600 ${largura < 440 ? 11 : 13}px "Source Sans 3", system-ui, sans-serif`;
+    ctx.font = `600 ${largura < 440 ? 11 : 13}px "Manrope", system-ui, sans-serif`;
     ctx.textAlign = "center";
     xs.forEach((x, i) => {
       ctx.fillStyle = COR.no;
@@ -113,6 +136,7 @@
   };
   const iniciar = () => { if (rodando) return; rodando = true; anterior = performance.now(); requestAnimationFrame(quadro); };
   const parar = () => { rodando = false; };
+  aoMudarTema.push(() => { COR = lerCores(); desenhar(); });
   medir();
   for (let i = 0; i < 140; i++) atualizar(0.05);
   retidos = 0; retidosEl.textContent = "0";
@@ -238,11 +262,11 @@
     MESES.forEach((d, i) => { html += `<text x="${x(i)}" y="${H - 10}" text-anchor="middle">${d.nome}</text>`; });
     html += "</g>";
     const caminho = MESES.map((d, i) => `${i ? "L" : "M"}${x(i)},${y(d.familias)}`).join(" ");
-    html += `<path d="${caminho}" fill="none" stroke="#4E9F72" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" class="traco"/>`;
-    html += `<line class="mira" x1="0" x2="0" y1="${m.t}" y2="${H - m.b}" stroke="#737A71" stroke-dasharray="3 3" opacity="0"/>`;
-    MESES.forEach((d, i) => { html += `<circle class="ponto" cx="${x(i)}" cy="${y(d.familias)}" r="4.5" fill="#4E9F72" stroke="#121411" stroke-width="2"/>`; });
+    html += `<path d="${caminho}" fill="none" style="stroke: var(--chart)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" class="traco"/>`;
+    html += `<line class="mira" x1="0" x2="0" y1="${m.t}" y2="${H - m.b}" style="stroke: var(--faint)" stroke-dasharray="3 3" opacity="0"/>`;
+    MESES.forEach((d, i) => { html += `<circle class="ponto" cx="${x(i)}" cy="${y(d.familias)}" r="4.5" style="fill: var(--chart); stroke: var(--surface)" stroke-width="2"/>`; });
     const ultimo = MESES[MESES.length - 1];
-    html += `<text x="${x(MESES.length - 1) - 10}" y="${y(ultimo.familias) - 12}" text-anchor="end" fill="#EDEEE8" style="font: 600 13px var(--body)">${fmtFamilias(ultimo.familias)}</text>`;
+    html += `<text x="${x(MESES.length - 1) - 10}" y="${y(ultimo.familias) - 12}" text-anchor="end" style="fill: var(--ink); font: 700 13px var(--body)">${fmtFamilias(ultimo.familias)}</text>`;
     html += `<rect class="captura" x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="transparent"/>`;
     svg.innerHTML = html;
     caixa.appendChild(svg);
@@ -467,7 +491,7 @@ df.head()`;
         # "SÃƒO PAULO" vira "SÃO PAULO"
         return texto.encode("cp1252").decode("utf-8")
     except UnicodeError:
-        return texto  # já estava correto
+        return texto
 
 df["municipio"] = df["municipio"].map(corrigir_encoding)`,
       executar(linhas) {
@@ -699,11 +723,11 @@ df.to_csv("carga_municipios.csv", index=False)`,
   const USOS = {
     pandas: { nome: "Python e pandas", itens: [["MDS", "Fluxos de ETL que geram os arquivos de carga do VIS DATA"], ["MDS", "Pipelines orçamentários a partir do Tesouro Gerencial"], ["Projeto", "Análise exploratória da base Online Retail"], ["Projeto", "Modelo de previsão do Titanic"]] },
     etl: { nome: "ETL e qualidade de dados", itens: [["MDS", "Ciclo de carga do Bolsa Família de agosto de 2026, com 154 registros barrados"], ["MDS", "Padronização do IGD-E publicado em 3 layouts diferentes"], ["MDS", "QA do novo Relatório de Informações"], ["Estágio no MDS", "Cruzamento e tratamento de bases de dados"]] },
-    sql: { nome: "SQL", itens: [["Estágio no MDS", "Consultas e extração de dados em banco de dados"], ["Projeto", "Banco do portal do Bolsa Família e Cadastro Único"]] },
+    sql: { nome: "SQL", itens: [["Projeto", "Banco relacional da Olist com 1,5 milhão de linhas, window functions e validação de qualidade"], ["Estágio no MDS", "Consultas e extração de dados em banco de dados"], ["Projeto", "Banco do portal do Bolsa Família e Cadastro Único"]] },
     r: { nome: "R e Shiny", itens: [["MDS", "Manutenção de módulos do painel MonitoraMDS"]] },
     ml: { nome: "Machine learning", itens: [["Projeto", "Classificação com Gradient Boosting na base do Titanic"]] },
     colab: { nome: "Google Colab", itens: [["MDS", "Notebook único que reúne todas as rotinas de carga"]] },
-    sqlite: { nome: "SQLite", itens: [["Projeto", "Banco com modelagem dimensional do portal do Bolsa Família e Cadastro Único"]] },
+    sqlite: { nome: "SQLite", itens: [["Projeto", "Modelo relacional da Olist com chaves, restrições e índices"], ["Projeto", "Banco com modelagem dimensional do portal do Bolsa Família e Cadastro Único"]] },
     dbeaver: { nome: "DBeaver", itens: [["Estágio no MDS", "Consultas SQL e extração de dados"]] },
     react: { nome: "React", itens: [["Projeto", "Interface do portal do Bolsa Família e Cadastro Único"]] },
     fastapi: { nome: "FastAPI", itens: [["Projeto", "API do portal do Bolsa Família e Cadastro Único"]] }
@@ -733,4 +757,5 @@ df.to_csv("carga_municipios.csv", index=False)`,
     catch (e) { avisar(email); }
   });
 
+  mostrarTema();
 })();
