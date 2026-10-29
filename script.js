@@ -32,145 +32,6 @@
     tempoAviso = setTimeout(() => aviso.classList.remove("visivel"), 2200);
   };
 
-  const linksMenu = [...document.querySelectorAll(".menu a")];
-  const observarMenu = new IntersectionObserver((entradas) => {
-    entradas.forEach((e) => {
-      if (!e.isIntersecting) return;
-      linksMenu.forEach((a) => a.classList.toggle("ativo", a.getAttribute("href") === "#" + e.target.id));
-    });
-  }, { rootMargin: "-40% 0px -55% 0px" });
-  linksMenu.forEach((a) => {
-    const alvo = document.querySelector(a.getAttribute("href"));
-    if (alvo) observarMenu.observe(alvo);
-  });
-
-  const contar = (el) => {
-    const alvo = Number(el.dataset.contar);
-    const sufixo = el.dataset.sufixo || "";
-    if (reduzido) { el.textContent = alvo + sufixo; return; }
-    const inicio = performance.now();
-    const passo = (agora) => {
-      const p = Math.min((agora - inicio) / 1400, 1);
-      el.textContent = Math.round(alvo * (1 - Math.pow(1 - p, 3))) + sufixo;
-      if (p < 1) requestAnimationFrame(passo);
-    };
-    requestAnimationFrame(passo);
-  };
-  const observarNumeros = new IntersectionObserver((entradas) => {
-    entradas.forEach((e) => { if (e.isIntersecting) { contar(e.target); observarNumeros.unobserve(e.target); } });
-  }, { threshold: 0.6 });
-  document.querySelectorAll("[data-contar]").forEach((el) => observarNumeros.observe(el));
-
-  const canvas = document.getElementById("fluxo");
-  const ctx = canvas.getContext("2d");
-  const ROTULOS = ["Excel", "pandas", "Validação", "CSV", "VIS DATA"];
-  const lerCor = (nome) => getComputedStyle(document.documentElement).getPropertyValue(nome).trim();
-  const lerCores = () => ({ linha: lerCor("--canvas-linha"), no: lerCor("--surface"), bruto: lerCor("--canvas-bruto"), ok: lerCor("--green"), ruim: lerCor("--flag"), tinta: lerCor("--ink") });
-  let COR = lerCores();
-  const retidosEl = document.getElementById("retidos");
-  let largura = 0, altura = 0, pontos = [], retidos = 0, acumulado = 0, rodando = false, anterior = 0;
-
-  const medir = () => {
-    const r = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.round(r.width * dpr);
-    canvas.height = Math.round(r.height * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    largura = r.width; altura = r.height;
-  };
-  const posicoes = () => {
-    const margem = 38;
-    return ROTULOS.map((_, i) => margem + i * (largura - 2 * margem) / (ROTULOS.length - 1));
-  };
-  const novoPonto = () => ({ x: -6, faixa: Math.random() * 2 - 1, ruim: Math.random() < 0.22, estado: "fluindo", queda: 0, vy: 0, alfa: 1, r: 3 + Math.random() * 1.5 });
-  const atualizar = (dt) => {
-    const xs = posicoes();
-    const velocidade = Math.max(55, largura * 0.15);
-    acumulado += dt;
-    if (acumulado > 0.15) { acumulado = 0; pontos.push(novoPonto()); }
-    for (const p of pontos) {
-      if (p.estado === "fluindo") {
-        p.x += velocidade * dt;
-        if (p.ruim && p.x >= xs[2] - 14) {
-          p.x = xs[2] - 14; p.estado = "retido"; retidos++;
-          retidosEl.textContent = retidos;
-        }
-      } else {
-        p.vy += 240 * dt; p.queda += p.vy * dt; p.alfa -= 1.1 * dt;
-      }
-    }
-    pontos = pontos.filter((p) => p.alfa > 0 && p.x < xs[4]);
-  };
-  const desenhar = () => {
-    ctx.clearRect(0, 0, largura, altura);
-    const xs = posicoes();
-    const yc = altura * 0.4;
-    const espalhar = Math.min(50, altura * 0.21);
-    ctx.strokeStyle = COR.linha; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(0, yc); ctx.lineTo(largura, yc); ctx.stroke();
-    for (const p of pontos) {
-      let fator = 1;
-      if (p.x > xs[3]) fator = Math.max(0, 1 - (p.x - xs[3]) / ((xs[4] - xs[3]) * 0.75));
-      const y = yc + p.faixa * espalhar * fator + p.queda;
-      ctx.globalAlpha = Math.max(0, p.alfa);
-      ctx.fillStyle = p.x > xs[1] ? (p.ruim ? COR.ruim : COR.ok) : COR.bruto;
-      ctx.beginPath(); ctx.arc(p.x, y, p.r, 0, Math.PI * 2); ctx.fill();
-    }
-    ctx.globalAlpha = 1;
-    ctx.font = `600 ${largura < 440 ? 11 : 13}px "Manrope", system-ui, sans-serif`;
-    ctx.textAlign = "center";
-    xs.forEach((x, i) => {
-      ctx.fillStyle = COR.no;
-      ctx.strokeStyle = i === 2 ? COR.ruim : COR.ok;
-      ctx.lineWidth = 2.5;
-      ctx.beginPath(); ctx.arc(x, yc, 11, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = COR.tinta;
-      ctx.fillText(ROTULOS[i], x, yc + espalhar + 36);
-    });
-  };
-  const quadro = (agora) => {
-    const dt = Math.min((agora - anterior) / 1000, 0.05);
-    anterior = agora;
-    atualizar(dt); desenhar();
-    if (rodando) requestAnimationFrame(quadro);
-  };
-  const iniciar = () => { if (rodando) return; rodando = true; anterior = performance.now(); requestAnimationFrame(quadro); };
-  const parar = () => { rodando = false; };
-  aoMudarTema.push(() => { COR = lerCores(); desenhar(); });
-  medir();
-  for (let i = 0; i < 140; i++) atualizar(0.05);
-  retidos = 0; retidosEl.textContent = "0";
-  desenhar();
-  window.addEventListener("resize", () => { medir(); desenhar(); });
-  if (document.fonts) document.fonts.ready.then(desenhar);
-  if (reduzido) document.getElementById("contador-retidos").hidden = true;
-  else new IntersectionObserver((e) => (e[0].isIntersecting ? iniciar() : parar())).observe(canvas);
-
-  const lista = document.getElementById("ciclo-lista");
-  const passosCiclo = [...lista.querySelectorAll(".passo-ciclo")];
-  const progresso = document.getElementById("ciclo-progresso");
-  const atualizarCiclo = () => {
-    const ref = window.innerHeight * 0.6;
-    const topoLista = lista.getBoundingClientRect().top;
-    let ultimoAtivo = -1;
-    passosCiclo.forEach((p, i) => {
-      const ativo = reduzido || p.getBoundingClientRect().top < ref;
-      p.classList.toggle("ativo", ativo);
-      if (ativo) ultimoAtivo = i;
-    });
-    const total = lista.getBoundingClientRect().height - 16;
-    let altura = 0;
-    if (ultimoAtivo >= 0) {
-      const alvo = passosCiclo[ultimoAtivo];
-      altura = ultimoAtivo === passosCiclo.length - 1 ? total : alvo.getBoundingClientRect().top - topoLista + 12;
-      altura = Math.min(total, Math.max(altura, ref - topoLista));
-    }
-    progresso.style.height = Math.max(0, Math.min(total, altura)) + "px";
-  };
-  window.addEventListener("scroll", atualizarCiclo, { passive: true });
-  window.addEventListener("resize", atualizarCiclo);
-  atualizarCiclo();
-
   const REGIOES = [
     { nome: "Nordeste", familias: 8.97e6, valor: 6.03e9 },
     { nome: "Sudeste", familias: 5.50e6, valor: 3.68e9 },
@@ -266,7 +127,7 @@
     html += `<line class="mira" x1="0" x2="0" y1="${m.t}" y2="${H - m.b}" style="stroke: var(--faint)" stroke-dasharray="3 3" opacity="0"/>`;
     MESES.forEach((d, i) => { html += `<circle class="ponto" cx="${x(i)}" cy="${y(d.familias)}" r="4.5" style="fill: var(--chart); stroke: var(--surface)" stroke-width="2"/>`; });
     const ultimo = MESES[MESES.length - 1];
-    html += `<text x="${x(MESES.length - 1) - 10}" y="${y(ultimo.familias) - 12}" text-anchor="end" style="fill: var(--ink); font: 700 13px var(--body)">${fmtFamilias(ultimo.familias)}</text>`;
+    html += `<text x="${x(MESES.length - 1) - 10}" y="${y(ultimo.familias) - 12}" text-anchor="end" style="fill: var(--ink); font: 700 13px var(--fonte)">${fmtFamilias(ultimo.familias)}</text>`;
     html += `<rect class="captura" x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="transparent"/>`;
     svg.innerHTML = html;
     caixa.appendChild(svg);
@@ -711,45 +572,6 @@ df.to_csv("carga_municipios.csv", index=False)`,
     baixarArquivo(new Blob([csv], { type: "text/csv;charset=utf-8" }), `carga_municipios_2026-${amostra.mes}.csv`);
   });
   reiniciar();
-
-  const filtros = [...document.querySelectorAll(".filtro")];
-  const projetos = [...document.querySelectorAll(".projeto")];
-  filtros.forEach((f) => f.addEventListener("click", () => {
-    const tipo = f.dataset.filtro;
-    filtros.forEach((x) => x.setAttribute("aria-pressed", String(x === f)));
-    projetos.forEach((p) => { p.hidden = tipo !== "todos" && !p.dataset.tipos.split(" ").includes(tipo); });
-  }));
-
-  const USOS = {
-    pandas: { nome: "Python e pandas", itens: [["MDS", "Fluxos de ETL que geram os arquivos de carga do VIS DATA"], ["MDS", "Pipelines orçamentários a partir do Tesouro Gerencial"], ["Projeto", "Análise exploratória da base Online Retail"], ["Projeto", "Modelo de previsão do Titanic"]] },
-    etl: { nome: "ETL e qualidade de dados", itens: [["MDS", "Ciclo de carga do Bolsa Família de agosto de 2026, com 154 registros barrados"], ["MDS", "Padronização do IGD-E publicado em 3 layouts diferentes"], ["MDS", "QA do novo Relatório de Informações"], ["Estágio no MDS", "Cruzamento e tratamento de bases de dados"]] },
-    sql: { nome: "SQL", itens: [["Projeto", "Banco relacional da Olist com 1,5 milhão de linhas, window functions e validação de qualidade"], ["Estágio no MDS", "Consultas e extração de dados em banco de dados"], ["Projeto", "Banco do portal do Bolsa Família e Cadastro Único"]] },
-    r: { nome: "R e Shiny", itens: [["MDS", "Manutenção de módulos do painel MonitoraMDS"]] },
-    ml: { nome: "Machine learning", itens: [["Projeto", "Classificação com Gradient Boosting na base do Titanic"]] },
-    colab: { nome: "Google Colab", itens: [["MDS", "Notebook único que reúne todas as rotinas de carga"]] },
-    sqlite: { nome: "SQLite", itens: [["Projeto", "Modelo relacional da Olist com chaves, restrições e índices"], ["Projeto", "Banco com modelagem dimensional do portal do Bolsa Família e Cadastro Único"]] },
-    dbeaver: { nome: "DBeaver", itens: [["Estágio no MDS", "Consultas SQL e extração de dados"]] },
-    react: { nome: "React", itens: [["Projeto", "Interface do portal do Bolsa Família e Cadastro Único"]] },
-    fastapi: { nome: "FastAPI", itens: [["Projeto", "API do portal do Bolsa Família e Cadastro Único"]] }
-  };
-  const chips = [...document.querySelectorAll("button.chip")];
-  const ondeTitulo = document.getElementById("onde-titulo");
-  const ondeLista = document.getElementById("onde-lista");
-  const mostrarUso = (chave) => {
-    const uso = USOS[chave];
-    chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.hab === chave)));
-    ondeTitulo.textContent = uso.nome;
-    ondeLista.innerHTML = "";
-    uso.itens.forEach(([onde, texto]) => {
-      const li = document.createElement("li");
-      const s = document.createElement("span");
-      s.textContent = onde;
-      li.append(s, texto);
-      ondeLista.appendChild(li);
-    });
-  };
-  chips.forEach((c) => c.addEventListener("click", () => mostrarUso(c.dataset.hab)));
-  mostrarUso("pandas");
 
   document.getElementById("copiar-email").addEventListener("click", async () => {
     const email = "contato.joaovlqueiroz@gmail.com";

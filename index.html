@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>João Vitor Queiroz | Dados</title>
-<meta name="description" content="Portfólio de João Vitor Queiroz: ETL e qualidade de dados de programas sociais no MDS. Estudante de Ciência da Computação na UCB.">
+<meta name="description" content="João Vitor Queiroz trabalha com tratamento e qualidade de dados de programas sociais no MDS e estuda Ciência da Computação na UCB.">
 <meta property="og:title" content="João Vitor Queiroz | Dados">
-<meta property="og:description" content="ETL e qualidade de dados de programas sociais no MDS. Estudante de Ciência da Computação na UCB.">
+<meta property="og:description" content="Tratamento e qualidade de dados de programas sociais no MDS.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#F3F5F7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0E1116" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231D6B52'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' fill='%23FFFFFF' text-anchor='middle'%3EJV%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231D6B52'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' fill='%23FFFFFF' text-anchor='middle'%3EJV%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,194 +20,122 @@
     if (tema === "light" || tema === "dark") document.documentElement.setAttribute("data-theme", tema);
   } catch (e) {}
 </script>
-<link rel="stylesheet" href="estilos.css?v=2026-10-29b">
+<link rel="stylesheet" href="estilos.css?v=2026-10-29c">
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
-<header class="topo">
-  <div class="wrap">
-    <a class="marca" href="#inicio"><span class="sigla" aria-hidden="true">JV</span>João Vitor Queiroz</a>
-    <nav aria-label="Seções">
-      <ul class="menu">
-        <li><a href="#ciclo">Ciclo</a></li>
-        <li><a href="#trabalho">Trabalho</a></li>
-        <li><a href="#painel">Painel</a></li>
-        <li><a href="#demonstracao">Demonstração</a></li>
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
-    <div class="topo-acoes">
-      <button class="icone" id="tema" type="button" aria-label="Alternar tema"></button>
-      <a class="botao principal pequeno" href="curriculo.pdf?v=2026-10-26" download="Curriculo_JoaoVitorQueiroz.pdf" aria-label="Baixar currículo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M5 21h14"/></svg>
-        <span class="texto">Currículo</span>
-      </a>
-    </div>
-  </div>
+<header class="topo wrap">
+  <a class="marca" href="#">João Vitor Queiroz</a>
+  <nav aria-label="Seções">
+    <ul class="menu">
+      <li><a href="#trabalho">Trabalho</a></li>
+      <li><a href="#demonstracao">Demonstração</a></li>
+      <li><a href="#painel">Painel</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+  <button class="tema" id="tema" type="button" aria-label="Alternar tema"></button>
 </header>
 
 <main id="conteudo">
-  <section class="wrap" id="inicio" aria-labelledby="nome">
-    <div class="hero-grid">
-      <div>
-        <span class="status"><span class="pulso" aria-hidden="true"></span>Disponível para oportunidades na área de dados</span>
-        <h1 id="nome">João Vitor Queiroz</h1>
-        <p class="papel">ETL e qualidade de dados para políticas públicas</p>
-        <p class="lead">Estudante de Ciência da Computação na UCB. No <strong>Ministério do Desenvolvimento e Assistência Social (MDS)</strong>, transformo planilhas de programas sociais em dados confiáveis e prontos para publicação.</p>
-        <div class="acoes">
-          <a class="botao principal" href="#demonstracao">Ver meu trabalho na prática</a>
-          <a class="botao" href="https://www.linkedin.com/in/joaovlqueiroz/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="botao" href="https://github.com/JaumvlQueiroz" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </div>
-      <figure class="visual">
-        <canvas id="fluxo" role="img" aria-label="Animação de registros passando por planilhas Excel, tratamento em pandas, validação, arquivo CSV e VIS DATA. Registros inconsistentes ficam retidos na validação."></canvas>
-        <figcaption>Os registros saem das planilhas, são tratados e os inconsistentes ficam retidos na validação antes da carga.<span id="contador-retidos"> Retidos agora: <b id="retidos">0</b>.</span></figcaption>
-      </figure>
+  <section class="abertura wrap" aria-labelledby="nome">
+    <h1 id="nome">João Vitor Queiroz</h1>
+    <div class="texto">
+      <p class="lead">Trabalho com dados no Ministério do Desenvolvimento e Assistência Social (MDS). Todo mês, recebo as planilhas que as áreas do ministério enviam, trato, valido e gero os arquivos que alimentam o VIS DATA, a plataforma de dados abertos do MDS.</p>
+      <p>São mais de 40 conjuntos de dados de programas como Bolsa Família, Cadastro Único e BPC. Estudo Ciência da Computação na UCB e procuro uma posição na área de dados.</p>
     </div>
-    <div class="numeros">
-      <div class="numero"><b data-contar="40" data-sufixo="+">40+</b><span>conjuntos de dados carregados no VIS DATA</span></div>
-      <div class="numero"><b data-contar="10" data-sufixo="+">10+</b><span>programas sociais, como Bolsa Família, Cadastro Único e BPC</span></div>
-      <div class="numero alerta"><b data-contar="154">154</b><span>registros duplicados ou ausentes encontrados antes da publicação</span></div>
-      <div class="numero"><b data-contar="7" data-sufixo="+">7+</b><span>programas com pipelines de dados orçamentários</span></div>
-    </div>
-  </section>
-
-  <section class="secao wrap" id="ciclo" aria-labelledby="ciclo-titulo">
-    <div class="ciclo-grid">
-      <div class="ciclo-lado">
-        <h2 id="ciclo-titulo">Um ciclo de carga, do começo ao fim</h2>
-        <p class="intro">É assim que um conjunto de dados sai da planilha da área técnica e chega publicado no VIS DATA, a plataforma de dados abertos do MDS.</p>
-      </div>
-      <div class="ciclo" id="ciclo-lista">
-        <span class="ciclo-progresso" id="ciclo-progresso" aria-hidden="true"></span>
-        <ol class="ciclo-itens">
-        <li class="passo-ciclo">
-          <span class="n" aria-hidden="true">1</span>
-          <h3>A planilha chega</h3>
-          <p>As áreas técnicas do ministério enviam as planilhas de cada mês pela caixa de e-mail do VIS DATA, que eu acompanho e respondo.</p>
-          <span class="rotulo">Excel</span>
-        </li>
-        <li class="passo-ciclo">
-          <span class="n" aria-hidden="true">2</span>
-          <h3>Leitura e tratamento</h3>
-          <p>Um único notebook reúne todas as rotinas: lê a planilha, corrige encoding, datas e CNPJ e renomeia as colunas para os códigos de variável da plataforma.</p>
-          <span class="rotulo">Python, pandas e Google Colab</span>
-        </li>
-        <li class="passo-ciclo">
-          <span class="n" aria-hidden="true">3</span>
-          <h3>Validação</h3>
-          <p>Antes de gerar qualquer arquivo, confiro códigos IBGE duplicados ou ausentes, variáveis com fonte errada e valores trocados entre municípios.</p>
-          <span class="rotulo">Qualidade de dados</span>
-        </li>
-        <li class="passo-ciclo">
-          <span class="n" aria-hidden="true">4</span>
-          <h3>Arquivo de carga</h3>
-          <p>O notebook gera os CSVs no layout exato que a plataforma espera, separados por conjunto de dados e período de referência.</p>
-          <span class="rotulo">CSV</span>
-        </li>
-        <li class="passo-ciclo">
-          <span class="n" aria-hidden="true">5</span>
-          <h3>Conferência depois da carga</h3>
-          <p>Com o dado no ar, comparo o que está no VIS DATA com a planilha de origem para garantir que nada se perdeu no caminho.</p>
-          <span class="rotulo">VIS DATA</span>
-        </li>
-        </ol>
-      </div>
-    </div>
+    <ul class="links">
+      <li><a href="mailto:contato.joaovlqueiroz@gmail.com">contato.joaovlqueiroz@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/joaovlqueiroz/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/JaumvlQueiroz" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="curriculo.pdf?v=2026-10-26" download="Curriculo_JoaoVitorQueiroz.pdf">Currículo em PDF</a></li>
+    </ul>
   </section>
 
   <section class="secao wrap" id="trabalho" aria-labelledby="trabalho-titulo">
-    <div class="cabeca">
+    <h2 id="trabalho-titulo">No MDS</h2>
+    <p class="texto intro">Estou no Departamento de Gestão da Informação desde setembro de 2025, primeiro como estagiário e, desde fevereiro de 2026, na equipe de dados. Meu cargo formal é auxiliar de escritório (terceirizado); na prática, trabalho com dados.</p>
+
+    <dl class="frentes">
       <div>
-        <h2 id="trabalho-titulo">O que faço no MDS</h2>
-        <p class="intro">Departamento de Gestão da Informação, desde 2026. Meu cargo é Auxiliar de Escritório (terceirizado), e na prática atuo com dados.</p>
+        <dt>Cargas no VIS DATA</dt>
+        <dd>
+          <p>Escrevo os fluxos em Python e pandas que transformam as planilhas Excel das áreas em arquivos de carga. Juntei todas as rotinas em um único notebook no Google Colab, o que deixou o processo reprodutível e menos manual.</p>
+          <p>Um exemplo: os dados do IGD-E foram publicados em três layouts diferentes ao longo dos anos. Padronizei tudo em cinco arquivos de carga.</p>
+        </dd>
       </div>
-    </div>
+      <div>
+        <dt>Qualidade de dados</dt>
+        <dd>
+          <p>No ciclo do Bolsa Família de agosto de 2026, que tem 11 conjuntos de dados, encontrei cerca de 154 registros municipais duplicados ou ausentes e variáveis com a fonte errada, tudo antes da publicação.</p>
+          <p>Também faço o controle de qualidade do lançamento do novo Relatório de Informações do MDS, conferindo os dados contra as fontes e mapeando as variáveis.</p>
+        </dd>
+      </div>
+      <div>
+        <dt>Dados orçamentários</dt>
+        <dd><p>Montei os pipelines que transformam as exportações do Tesouro Gerencial em cargas de mais de sete programas, como Gás do Povo, PAA, Cisternas e Criança Feliz.</p></dd>
+      </div>
+      <div>
+        <dt>Painéis e documentação</dt>
+        <dd><p>Mantenho módulos do painel MonitoraMDS em R (Shiny) e escrevi tutoriais de três fluxos de carga para que outras pessoas da equipe consigam executá-los.</p></dd>
+      </div>
+    </dl>
 
-    <div class="bloco">
-      <div class="bloco-texto">
-        <span class="area">ETL e cargas</span>
-        <h3>Mais de 40 conjuntos de dados, de mais de 10 programas sociais</h3>
-        <ul>
-          <li>Desenvolvo fluxos de ETL em <strong>Python (pandas)</strong> que transformam planilhas Excel das áreas do ministério em arquivos de carga para o VIS DATA.</li>
-          <li>Unifiquei as rotinas de carga em <strong>um único notebook</strong> no Google Colab, tornando o processo reprodutível e menos dependente de trabalho manual.</li>
-          <li>Padronizei dados do IGD-E publicados em <strong>3 layouts diferentes</strong> ao longo dos anos, consolidando-os em 5 arquivos de carga.</li>
-        </ul>
-      </div>
-      <div class="tela" aria-label="Ilustração de uma lista de cargas por programa">
-        <div class="tela-topo"><span>cargas_visdata.ipynb</span><span>Ilustração</span></div>
-        <div class="tela-corpo">
-          <div class="linha-tela"><div><b>Bolsa Família</b><small>11 conjuntos, ciclo de agosto de 2026</small></div><span class="selo-status ok">Carregado</span></div>
-          <div class="linha-tela"><div><b>Cadastro Único</b><small>Dados mensais por município</small></div><span class="selo-status ok">Carregado</span></div>
-          <div class="linha-tela"><div><b>BPC</b><small>Colunas renomeadas para os códigos de variável</small></div><span class="selo-status ok">Carregado</span></div>
-          <div class="linha-tela"><div><b>IGD-M e IGD-E</b><small>3 layouts unificados em 5 arquivos</small></div><span class="selo-status ok">Carregado</span></div>
-          <div class="linha-tela"><div><b>CEBAS e Fomento Rural</b><small>Encoding, datas e CNPJ padronizados</small></div><span class="selo-status ok">Carregado</span></div>
+    <h3 class="subtitulo">Como é um ciclo de carga</h3>
+    <ol class="ciclo">
+      <li><strong>A planilha chega.</strong> As áreas enviam os dados do mês pela caixa de e-mail do VIS DATA, que eu acompanho e respondo.</li>
+      <li><strong>Leitura e tratamento.</strong> O notebook lê a planilha, corrige encoding, datas e CNPJ e renomeia as colunas para os códigos de variável da plataforma.</li>
+      <li><strong>Validação.</strong> Antes de gerar qualquer arquivo, confiro códigos IBGE duplicados ou ausentes, variáveis com fonte errada e valores trocados entre municípios.</li>
+      <li><strong>Arquivo de carga.</strong> O notebook gera os CSVs no layout que a plataforma espera, separados por conjunto de dados e período.</li>
+      <li><strong>Conferência.</strong> Com o dado no ar, comparo o VIS DATA com a planilha de origem para garantir que nada se perdeu.</li>
+    </ol>
+  </section>
+
+  <section class="secao wrap" id="demonstracao" aria-labelledby="demo-titulo">
+    <h2 id="demo-titulo">Um tratamento na prática</h2>
+    <p class="texto intro">Esta planilha fictícia tem os problemas que mais aparecem no meu dia a dia. Execute os passos na ordem que quiser e veja o código em pandas que faz cada correção. Depois, gere outra planilha com problemas diferentes.</p>
+    <div class="demo">
+      <div class="painel">
+        <div class="painel-topo">
+          <span>repasses_municipios.xlsx</span>
+          <span class="problemas" id="problemas" aria-live="polite"></span>
+        </div>
+        <div class="rolagem">
+          <table>
+            <thead><tr><th>municipio</th><th>uf</th><th>codigo_ibge</th><th>referencia</th><th>cnpj</th></tr></thead>
+            <tbody id="tabela"></tbody>
+          </table>
+        </div>
+        <div class="passos" id="passos" role="group" aria-label="Passos do tratamento"></div>
+        <div class="controles">
+          <button class="botao principal" id="executar-tudo" type="button">Executar todos</button>
+          <button class="botao" id="reiniciar" type="button">Recomeçar</button>
+          <button class="botao" id="nova-amostra" type="button">Gerar outra planilha</button>
+          <button class="botao" id="baixar-csv" type="button" disabled>Baixar CSV tratado</button>
         </div>
       </div>
-    </div>
-
-    <div class="bloco invertido">
-      <div class="bloco-texto">
-        <span class="area">Qualidade de dados</span>
-        <h3>154 registros barrados antes de chegar ao público</h3>
-        <ul>
-          <li>Executei o ciclo completo de carga do <strong>Bolsa Família de agosto de 2026</strong> (11 conjuntos), encontrando cerca de 154 registros municipais duplicados ou ausentes e variáveis com fonte errada antes da publicação.</li>
-          <li>Atuo no <strong>QA do lançamento do novo Relatório de Informações</strong> do MDS, validando os dados contra as fontes e mapeando as variáveis utilizadas.</li>
-        </ul>
-      </div>
-      <div class="tela" aria-label="Ilustração de um relatório de validação">
-        <div class="tela-topo"><span>validacao_pbf_2026-08</span><span>Ilustração</span></div>
-        <div class="tela-corpo">
-          <div class="linha-tela"><div><b>Códigos IBGE duplicados ou ausentes</b><small>Cerca de 154 registros municipais</small></div><span class="selo-status alerta">Barrado</span></div>
-          <div class="linha-tela"><div><b>Variáveis com fonte errada</b><small>Conferidas contra a planilha de origem</small></div><span class="selo-status ok">Corrigido</span></div>
-          <div class="linha-tela"><div><b>Valores trocados entre municípios</b><small>Identificados antes da publicação</small></div><span class="selo-status ok">Corrigido</span></div>
-          <div class="linha-tela"><div><b>Encoding, datas e CNPJ</b><small>Formatos padronizados</small></div><span class="selo-status ok">Corrigido</span></div>
-        </div>
+      <div class="painel codigo">
+        <div class="painel-topo"><span id="codigo-titulo">Leitura da planilha</span></div>
+        <pre><code id="codigo"></code></pre>
+        <ul class="log" id="log" aria-live="polite"></ul>
       </div>
     </div>
-
-    <div class="bloco">
-      <div class="bloco-texto">
-        <span class="area">Dados orçamentários</span>
-        <h3>Do Tesouro Gerencial para a plataforma</h3>
-        <ul>
-          <li>Construí pipelines de dados orçamentários de <strong>mais de 7 programas</strong> a partir de exportações do Tesouro Gerencial.</li>
-          <li>Os arquivos chegam compactados e em formato de relatório; o pipeline extrai, organiza e gera a carga de cada programa.</li>
-        </ul>
-      </div>
-      <div class="tela" aria-label="Ilustração do fluxo de dados orçamentários">
-        <div class="tela-topo"><span>orcamento_tesouro_gerencial</span><span>Ilustração</span></div>
-        <div class="tela-corpo fluxo-orc">
-          <div class="caixa-orc"><b>Exportação do Tesouro Gerencial</b>Arquivos .zip com a execução orçamentária</div>
-          <span class="seta-orc" aria-hidden="true">↓</span>
-          <div class="programas"><span>Gás do Povo</span><span>PAA</span><span>BPC</span><span>Cisternas</span><span>IGD-PBF</span><span>Criança Feliz</span><span>Fomento Rural</span></div>
-          <span class="seta-orc" aria-hidden="true">↓</span>
-          <div class="caixa-orc"><b>Arquivos de carga</b>Um por programa, prontos para o VIS DATA</div>
-        </div>
-      </div>
-    </div>
-
-    <p class="tambem">Também mantenho módulos do painel <strong>MonitoraMDS em R (Shiny)</strong> e escrevi tutoriais para 3 fluxos de carga, para que outras pessoas da equipe consigam executá-los.</p>
   </section>
 
   <section class="secao wrap" id="painel" aria-labelledby="painel-titulo">
-    <div class="cabeca">
-      <div>
-        <h2 id="painel-titulo">Painel com dados públicos do Bolsa Família</h2>
-        <p class="intro">Números oficiais divulgados pelo governo federal em 2026. É esse tipo de dado que passa pelas cargas do VIS DATA antes de chegar ao público.</p>
-      </div>
-    </div>
+    <h2 id="painel-titulo">Bolsa Família em números</h2>
+    <p class="texto intro">Números oficiais divulgados pelo governo federal em 2026. É esse tipo de dado que passa pelas cargas do VIS DATA antes de chegar ao público.</p>
+
+    <dl class="kpis">
+      <div><dt>Famílias atendidas</dt><dd>19,3 mi</dd></div>
+      <div><dt>Repasse do mês</dt><dd>R$ 13,08 bi</dd></div>
+      <div><dt>Benefício médio</dt><dd>R$ 677,66</dd></div>
+      <div><dt>Municípios</dt><dd>5.571</dd></div>
+    </dl>
 
     <div class="painel">
-      <div class="kpis">
-        <div class="kpi"><span>Famílias atendidas</span><b>19,3 mi</b></div>
-        <div class="kpi"><span>Repasse do mês</span><b>R$ 13,08 bi</b></div>
-        <div class="kpi"><span>Benefício médio</span><b>R$ 677,66</b></div>
-        <div class="kpi"><span>Municípios</span><b>5.571</b></div>
-      </div>
       <div class="painel-barra">
         <div class="grupo-botoes" role="group" aria-label="Visão do painel">
           <button type="button" aria-pressed="true" data-visao="regiao">Por região</button>
@@ -238,231 +166,108 @@
     </div>
   </section>
 
-  <section class="secao wrap" id="demonstracao" aria-labelledby="demo-titulo">
-    <div class="cabeca">
-      <div>
-        <h2 id="demo-titulo">Veja um tratamento na prática</h2>
-        <p class="intro">Uma amostra com os problemas que mais aparecem nas planilhas que recebo. Clique nos passos na ordem que quiser e acompanhe o código em pandas que faz cada correção. Quer outro desafio? Gere uma nova planilha com outros problemas.</p>
-      </div>
-    </div>
-    <div class="demo">
-      <div class="painel">
-        <div class="painel-topo">
-          <span>repasses_municipios.xlsx <small>(dados fictícios)</small></span>
-          <span class="problemas" id="problemas" aria-live="polite"></span>
-        </div>
-        <div class="rolagem">
-          <table>
-            <thead><tr><th>municipio</th><th>uf</th><th>codigo_ibge</th><th>referencia</th><th>cnpj</th></tr></thead>
-            <tbody id="tabela"></tbody>
-          </table>
-        </div>
-        <div class="passos" id="passos" role="group" aria-label="Passos do tratamento"></div>
-        <div class="controles">
-          <button class="botao principal pequeno" id="executar-tudo" type="button">Executar todos os passos</button>
-          <button class="botao pequeno" id="reiniciar" type="button">Recomeçar</button>
-          <button class="botao pequeno" id="nova-amostra" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
-            Gerar outra planilha
-          </button>
-          <button class="botao pequeno" id="baixar-csv" type="button" disabled>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M5 21h14"/></svg>
-            Baixar CSV tratado
-          </button>
-        </div>
-      </div>
-      <div class="painel codigo">
-        <div class="painel-topo"><span id="codigo-titulo">Leitura da planilha</span><small>Python e pandas</small></div>
-        <pre><code id="codigo"></code></pre>
-        <ul class="log" id="log" aria-live="polite"></ul>
-      </div>
-    </div>
-    <p class="nota-demo">É o mesmo tipo de problema que trato no dia a dia: encoding quebrado, datas em vários formatos, CNPJ que o Excel converte em número, registros duplicados e códigos ausentes.</p>
-  </section>
-
-  <section class="secao wrap" id="formacao" aria-labelledby="formacao-titulo">
-    <div class="cabeca"><h2 id="formacao-titulo">Formação e experiência anterior</h2></div>
-    <div class="outros">
-      <article class="cartao">
-        <span class="periodo">2024 a 2028</span>
-        <h3>Bacharelado em Ciência da Computação</h3>
-        <p class="sub">Universidade Católica de Brasília (UCB), em andamento</p>
-        <ul>
-          <li>Projetos acadêmicos em análise de dados, machine learning e desenvolvimento web.</li>
-          <li>Disciplinas com Java, concorrência, SQL e estatística.</li>
-        </ul>
-      </article>
-      <article class="cartao">
-        <span class="periodo">set/2025 a fev/2026</span>
-        <h3>Estágio no MDS</h3>
-        <p class="sub">Ministério do Desenvolvimento e Assistência Social, antes da contratação para a equipe de dados</p>
-        <ul>
-          <li>Desenvolvi scripts em Python para processamento de dados e automação de rotinas.</li>
-          <li>Fiz consultas SQL e extração de dados em banco com o DBeaver.</li>
-          <li>Cruzei e tratei bases de dados, garantindo consistência e integridade.</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
   <section class="secao wrap" id="projetos" aria-labelledby="proj-titulo">
-    <div class="cabeca">
-      <div>
-        <h2 id="proj-titulo">Projetos</h2>
-        <p class="intro">Trabalhos da faculdade e projetos pessoais.</p>
+    <h2 id="proj-titulo">Projetos</h2>
+
+    <article class="projeto principal-projeto">
+      <div class="projeto-texto">
+        <h3><a href="https://github.com/JaumvlQueiroz/ecommerce-sql-olist" target="_blank" rel="noopener">Análise de e-commerce com SQL</a></h3>
+        <p>Montei um banco relacional com 1,5 milhão de linhas de dados públicos da Olist: nove tabelas com chaves e restrições, carga e transformação em SQL, 12 verificações de qualidade e dez consultas de negócio com window functions.</p>
+        <p>Uma das conclusões: quando a entrega atrasa de 4 a 7 dias, a nota média do cliente cai de 4,3 para 2,1.</p>
+        <p class="tec">SQL, SQLite, Python</p>
       </div>
-      <div class="filtros" role="group" aria-label="Filtrar projetos">
-        <button class="filtro" type="button" data-filtro="todos" aria-pressed="true">Todos</button>
-        <button class="filtro" type="button" data-filtro="dados" aria-pressed="false">Dados</button>
-        <button class="filtro" type="button" data-filtro="sql" aria-pressed="false">SQL</button>
-        <button class="filtro" type="button" data-filtro="web" aria-pressed="false">Web</button>
-        <button class="filtro" type="button" data-filtro="ml" aria-pressed="false">Machine learning</button>
-      </div>
-    </div>
-    <div class="projetos">
-      <article class="projeto destaque" data-tipos="dados sql">
-        <div class="destaque-texto">
-          <span class="tipo">SQL e modelagem de banco de dados</span>
-          <h3>Análise de e-commerce com SQL</h3>
-          <p>Banco relacional montado a partir de dados públicos da Olist, com carga, modelagem, validação de qualidade e consultas analíticas escritas em SQL.</p>
-          <dl class="numeros-projeto">
-            <div><dt>1,5 mi</dt><dd>linhas carregadas</dd></div>
-            <div><dt>9</dt><dd>tabelas com chaves e restrições</dd></div>
-            <div><dt>12</dt><dd>verificações de qualidade</dd></div>
-            <div><dt>10</dt><dd>consultas de negócio</dd></div>
-          </dl>
-          <p class="achado">Uma das conclusões: com 4 a 7 dias de atraso na entrega, a nota média do cliente cai de 4,3 para 2,1.</p>
-          <ul class="tags"><li>SQL</li><li>SQLite</li><li>Window functions</li><li>Modelagem relacional</li><li>Qualidade de dados</li></ul>
-          <a class="ver" href="https://github.com/JaumvlQueiroz/ecommerce-sql-olist" target="_blank" rel="noopener">Ver código e resultados</a>
-        </div>
-        <div class="painel codigo trecho">
-          <div class="painel-topo"><span>top_vendedores_por_uf.sql</span><small>Trecho</small></div>
-          <pre><code><span class="tk-c">-- Top 3 vendedores por estado</span>
-<span class="tk-k">SELECT</span>
-    uf,
-    vendedor_id,
-    faturamento,
-    <span class="tk-k">RANK</span>() <span class="tk-k">OVER</span> (
-        <span class="tk-k">PARTITION BY</span> uf
-        <span class="tk-k">ORDER BY</span> faturamento <span class="tk-k">DESC</span>
-    ) <span class="tk-k">AS</span> posicao
+      <pre class="trecho"><code><span class="tk-k">SELECT</span> uf, vendedor_id, faturamento,
+       <span class="tk-k">RANK</span>() <span class="tk-k">OVER</span> (
+           <span class="tk-k">PARTITION BY</span> uf
+           <span class="tk-k">ORDER BY</span> faturamento <span class="tk-k">DESC</span>
+       ) <span class="tk-k">AS</span> posicao
 <span class="tk-k">FROM</span> por_vendedor;</code></pre>
-        </div>
-      </article>
-      <article class="projeto" data-tipos="dados web sql">
-        <span class="tipo">Full-stack e modelagem de dados</span>
-        <h3>Portal de gestão do Bolsa Família e Cadastro Único</h3>
-        <p>Réplica de um portal de gestão municipal, com modelagem dimensional dos dados e protótipo mobile do painel do Cadastro Único com 88 variáveis mapeadas.</p>
-        <ul class="tags"><li>FastAPI</li><li>SQLite</li><li>React</li><li>Modelagem dimensional</li></ul>
-      </article>
-      <article class="projeto" data-tipos="dados">
-        <span class="tipo">Análise de dados</span>
-        <h3>Análise de vendas de e-commerce</h3>
-        <p>Análise exploratória da base Online Retail, com limpeza dos dados e versões sucessivas do notebook.</p>
-        <ul class="tags"><li>Python</li><li>pandas</li><li>Análise exploratória</li></ul>
-      </article>
-      <article class="projeto" data-tipos="ml dados">
-        <span class="tipo">Machine learning</span>
-        <h3>Previsão de sobrevivência no Titanic</h3>
-        <p>Modelo de classificação com Gradient Boosting sobre a base do Titanic.</p>
-        <ul class="tags"><li>Python</li><li>Gradient Boosting</li><li>Classificação</li></ul>
-      </article>
-      <article class="projeto" data-tipos="web">
-        <span class="tipo">Desenvolvimento web</span>
-        <h3>EduMarket</h3>
-        <p>Plataforma web full-stack desenvolvida como projeto acadêmico na UCB.</p>
-        <ul class="tags"><li>Full-stack</li><li>Projeto acadêmico</li></ul>
-      </article>
-      <article class="projeto" data-tipos="web">
-        <span class="tipo">Front-end</span>
-        <h3>Nlw</h3>
-        <p>Projeto de front-end com JavaScript, HTML5 e CSS3, com integração a uma API REST.</p>
-        <ul class="tags"><li>JavaScript</li><li>HTML5</li><li>CSS3</li><li>API REST</li></ul>
-        <a class="ver" href="https://github.com/JaumvlQueiroz/Nlw" target="_blank" rel="noopener">Ver código</a>
-      </article>
-    </div>
+    </article>
+
+    <article class="projeto">
+      <h3>Portal de gestão do Bolsa Família e Cadastro Único</h3>
+      <p>Réplica de um portal de gestão municipal, com modelagem dimensional dos dados e protótipo mobile do painel do Cadastro Único com 88 variáveis mapeadas.</p>
+      <p class="tec">FastAPI, SQLite, React</p>
+    </article>
+    <article class="projeto">
+      <h3>Análise de vendas de e-commerce</h3>
+      <p>Análise exploratória da base Online Retail, com limpeza dos dados e versões sucessivas do notebook.</p>
+      <p class="tec">Python, pandas</p>
+    </article>
+    <article class="projeto">
+      <h3>Previsão de sobrevivência no Titanic</h3>
+      <p>Modelo de classificação com Gradient Boosting sobre a base do Titanic.</p>
+      <p class="tec">Python, scikit-learn</p>
+    </article>
+    <article class="projeto">
+      <h3>EduMarket</h3>
+      <p>Plataforma web full-stack desenvolvida como projeto acadêmico na UCB.</p>
+      <p class="tec">Desenvolvimento web</p>
+    </article>
+    <article class="projeto">
+      <h3><a href="https://github.com/JaumvlQueiroz/Nlw" target="_blank" rel="noopener">Nlw</a></h3>
+      <p>Front-end com JavaScript, HTML e CSS, integrado a uma API REST.</p>
+      <p class="tec">JavaScript, HTML, CSS</p>
+    </article>
   </section>
 
-  <section class="secao wrap" id="habilidades" aria-labelledby="hab-titulo">
-    <div class="cabeca">
-      <div>
-        <h2 id="hab-titulo">Habilidades</h2>
-        <p class="intro">Clique numa habilidade para ver onde ela aparece no meu trabalho.</p>
-      </div>
-    </div>
-    <div class="hab">
-      <div>
-        <p class="legenda"><i aria-hidden="true"></i>Habilidades com exemplos de uso</p>
-        <div class="grupo">
-          <h3>Dados</h3>
-          <ul class="chips">
-            <li><button class="chip" type="button" data-hab="pandas" aria-pressed="true">Python e pandas</button></li>
-            <li><button class="chip" type="button" data-hab="etl" aria-pressed="false">ETL e qualidade de dados</button></li>
-            <li><button class="chip" type="button" data-hab="sql" aria-pressed="false">SQL</button></li>
-            <li><button class="chip" type="button" data-hab="r" aria-pressed="false">R e Shiny</button></li>
-            <li><button class="chip" type="button" data-hab="ml" aria-pressed="false">Machine learning</button></li>
-            <li><span class="chip">openpyxl</span></li>
-            <li><span class="chip">Power BI</span></li>
-          </ul>
+  <section class="secao wrap" id="experiencia" aria-labelledby="exp-titulo">
+    <h2 id="exp-titulo">Experiência e formação</h2>
+    <ol class="linha-tempo">
+      <li>
+        <span class="periodo">2026 até hoje</span>
+        <div>
+          <h3>Equipe de dados do MDS</h3>
+          <p>Auxiliar de escritório (terceirizado), com atuação em ETL, qualidade de dados e painéis.</p>
         </div>
-        <div class="grupo">
-          <h3>Bancos e ferramentas</h3>
-          <ul class="chips">
-            <li><button class="chip" type="button" data-hab="colab" aria-pressed="false">Google Colab</button></li>
-            <li><button class="chip" type="button" data-hab="sqlite" aria-pressed="false">SQLite</button></li>
-            <li><button class="chip" type="button" data-hab="dbeaver" aria-pressed="false">DBeaver</button></li>
-            <li><span class="chip">MongoDB</span></li>
-            <li><span class="chip">Git e GitHub</span></li>
-            <li><span class="chip">Excel, Word e PowerPoint</span></li>
-          </ul>
+      </li>
+      <li>
+        <span class="periodo">set/2025 a fev/2026</span>
+        <div>
+          <h3>Estágio no MDS</h3>
+          <p>Scripts em Python para processamento de dados, consultas SQL no DBeaver e tratamento de bases.</p>
         </div>
-        <div class="grupo">
-          <h3>Desenvolvimento e idiomas</h3>
-          <ul class="chips">
-            <li><button class="chip" type="button" data-hab="react" aria-pressed="false">React</button></li>
-            <li><button class="chip" type="button" data-hab="fastapi" aria-pressed="false">FastAPI</button></li>
-            <li><span class="chip">Java</span></li>
-            <li><span class="chip">TypeScript</span></li>
-            <li><span class="chip">CSS</span></li>
-            <li><span class="chip">Inglês intermediário</span></li>
-          </ul>
+      </li>
+      <li>
+        <span class="periodo">2024 a 2028</span>
+        <div>
+          <h3>Ciência da Computação, UCB</h3>
+          <p>Bacharelado em andamento na Universidade Católica de Brasília.</p>
         </div>
-      </div>
-      <aside class="painel onde" aria-live="polite">
-        <span class="rotulo-onde">Onde usei</span>
-        <h3 id="onde-titulo">Python e pandas</h3>
-        <ul id="onde-lista"></ul>
-      </aside>
-    </div>
+      </li>
+    </ol>
+
+    <h3 class="subtitulo">Ferramentas</h3>
+    <dl class="ferramentas">
+      <div><dt>Dados</dt><dd>Python (pandas, openpyxl), SQL, R e Shiny, Power BI</dd></div>
+      <div><dt>Bancos</dt><dd>SQLite, MongoDB, DBeaver</dd></div>
+      <div><dt>Desenvolvimento</dt><dd>Git e GitHub, Google Colab, Java, React, TypeScript, FastAPI</dd></div>
+      <div><dt>Idiomas</dt><dd>Inglês intermediário</dd></div>
+    </dl>
+  </section>
+
+  <section class="secao wrap contato" id="contato" aria-labelledby="contato-titulo">
+    <h2 id="contato-titulo">Contato</h2>
+    <p class="texto">Procuro uma posição na área de dados. O jeito mais rápido de falar comigo é por <span class="nowrap">e-mail</span>.</p>
+    <p class="email-linha">
+      <a class="email" href="mailto:contato.joaovlqueiroz@gmail.com">contato.joaovlqueiroz@gmail.com</a>
+      <button class="botao" id="copiar-email" type="button">Copiar</button>
+    </p>
+    <ul class="links">
+      <li><a href="https://www.linkedin.com/in/joaovlqueiroz/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/JaumvlQueiroz" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="curriculo.pdf?v=2026-10-26" download="Curriculo_JoaoVitorQueiroz.pdf">Currículo em PDF</a></li>
+    </ul>
   </section>
 </main>
 
-<section class="contato" id="contato" aria-labelledby="contato-titulo">
-  <div class="wrap contato-grid">
-    <div>
-      <h2 id="contato-titulo">Vamos conversar sobre a sua equipe de dados?</h2>
-      <p>Busco uma posição na área de dados para aplicar a experiência que construí no MDS com pipelines de ETL, validação e qualidade de dados. Estou disponível para conversar sobre oportunidades e respondo rápido por e-mail.</p>
-      <div class="email-linha">
-        <a class="email" href="mailto:contato.joaovlqueiroz@gmail.com">contato.joaovlqueiroz@gmail.com</a>
-        <button class="botao pequeno" id="copiar-email" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-          Copiar e-mail
-        </button>
-      </div>
-    </div>
-    <div class="acoes">
-      <a class="botao" href="https://www.linkedin.com/in/joaovlqueiroz/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="botao" href="https://github.com/JaumvlQueiroz" target="_blank" rel="noopener">GitHub</a>
-      <a class="botao principal" href="curriculo.pdf?v=2026-10-26" download="Curriculo_JoaoVitorQueiroz.pdf">Baixar currículo (PDF)</a>
-    </div>
-  </div>
-</section>
-<footer class="rodape">
-  <div class="wrap"><span>© 2026 João Vitor Queiroz</span><span>Brasília, DF</span></div>
+<footer class="rodape wrap">
+  <span>João Vitor Queiroz, Brasília</span>
+  <span>2026</span>
 </footer>
 
 <div class="aviso-copia" id="aviso" role="status"></div>
 
-<script src="script.js?v=2026-10-29b"></script>
+<script src="script.js?v=2026-10-29c"></script>
 </body>
 </html>
