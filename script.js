@@ -123,11 +123,11 @@
     MESES.forEach((d, i) => { html += `<text x="${x(i)}" y="${H - 10}" text-anchor="middle">${d.nome}</text>`; });
     html += "</g>";
     const caminho = MESES.map((d, i) => `${i ? "L" : "M"}${x(i)},${y(d.familias)}`).join(" ");
-    html += `<path d="${caminho}" fill="none" style="stroke: var(--chart)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" class="traco"/>`;
-    html += `<line class="mira" x1="0" x2="0" y1="${m.t}" y2="${H - m.b}" style="stroke: var(--faint)" stroke-dasharray="3 3" opacity="0"/>`;
-    MESES.forEach((d, i) => { html += `<circle class="ponto" cx="${x(i)}" cy="${y(d.familias)}" r="4.5" style="fill: var(--chart); stroke: var(--surface)" stroke-width="2"/>`; });
+    html += `<path d="${caminho}" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" class="traco"/>`;
+    html += `<line class="mira" x1="0" x2="0" y1="${m.t}" y2="${H - m.b}" stroke-dasharray="3 3" opacity="0"/>`;
+    MESES.forEach((d, i) => { html += `<circle class="ponto" cx="${x(i)}" cy="${y(d.familias)}" r="4.5" stroke-width="2"/>`; });
     const ultimo = MESES[MESES.length - 1];
-    html += `<text x="${x(MESES.length - 1) - 10}" y="${y(ultimo.familias) - 12}" text-anchor="end" style="fill: var(--ink); font: 700 13px var(--fonte)">${fmtFamilias(ultimo.familias)}</text>`;
+    html += `<text x="${x(MESES.length - 1) - 10}" y="${y(ultimo.familias) - 12}" text-anchor="end" class="rotulo-final">${fmtFamilias(ultimo.familias)}</text>`;
     html += `<rect class="captura" x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="transparent"/>`;
     svg.innerHTML = html;
     caixa.appendChild(svg);

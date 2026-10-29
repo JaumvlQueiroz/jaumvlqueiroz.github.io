@@ -267,6 +267,10 @@ pre { margin: 0; padding: 1rem; overflow-x: auto; font: 400 0.8125rem/1.65 var(-
 .grafico-linha svg { width: 100%; height: 18rem; overflow: visible; }
 .eixo text { fill: var(--faint); font: 400 12px var(--fonte); }
 .grade { stroke: var(--line); stroke-width: 1; }
+.traco { stroke: var(--chart); }
+.mira { stroke: var(--faint); }
+.ponto { fill: var(--chart); stroke: var(--surface); }
+.rotulo-final { fill: var(--ink); font: 600 13px var(--fonte); }
 .fonte-dados { padding: 1rem; border-top: 1px solid var(--line); color: var(--faint); font-size: 0.8125rem; }
 .fonte-dados summary { cursor: pointer; color: var(--ink); font-size: 0.875rem; }
 .fonte-dados table { margin-top: 0.75rem; }

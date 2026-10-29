@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>João Vitor Queiroz | Dados</title>
 <meta name="description" content="João Vitor Queiroz trabalha com tratamento e qualidade de dados de programas sociais no MDS e estuda Ciência da Computação na UCB.">
 <meta property="og:title" content="João Vitor Queiroz | Dados">
@@ -13,13 +15,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-<script>
-  try {
-    const tema = localStorage.getItem("tema");
-    if (tema === "light" || tema === "dark") document.documentElement.setAttribute("data-theme", tema);
-  } catch (e) {}
-</script>
-<link rel="stylesheet" href="estilos.css?v=2026-10-29d">
+<script src="tema.js"></script>
+<link rel="stylesheet" href="estilos.css?v=2026-10-29e">
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -36,7 +33,7 @@
     </ul>
   </nav>
   <div class="cabecalho-acoes">
-    <a class="cabecalho-link" href="curriculo.pdf?v=2026-10-26" download="Curriculo_JoaoVitorQueiroz.pdf">Currículo</a>
+    <a class="cabecalho-link" href="curriculo.pdf?v=2026-10-29" download="Curriculo_JoaoVitorQueiroz.pdf">Currículo</a>
     <button class="tema" id="tema" type="button" aria-label="Alternar tema"></button>
   </div>
 </header>
@@ -52,7 +49,7 @@
           <a class="btn primario" href="#demonstracao">Ver a demonstração
             <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M18 6l-1.43 1.393L24.15 15H4v2h20.15l-7.58 7.573L18 26l10-10L18 6z"/></svg>
           </a>
-          <a class="btn terciario" href="curriculo.pdf?v=2026-10-26" download="Curriculo_JoaoVitorQueiroz.pdf">Baixar currículo
+          <a class="btn terciario" href="curriculo.pdf?v=2026-10-29" download="Curriculo_JoaoVitorQueiroz.pdf">Baixar currículo
             <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M26 24v4H6v-4H4v4a2 2 0 002 2h20a2 2 0 002-2v-4zM26 14l-1.41-1.41L17 20.17V2h-2v18.17l-7.59-7.58L6 14l10 10 10-10z"/></svg>
           </a>
         </div>
@@ -282,7 +279,7 @@
       <ul class="links">
         <li><a href="https://www.linkedin.com/in/joaovlqueiroz/" target="_blank" rel="noopener">LinkedIn</a></li>
         <li><a href="https://github.com/JaumvlQueiroz" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="curriculo.pdf?v=2026-10-26" download="Curriculo_JoaoVitorQueiroz.pdf">Currículo em PDF</a></li>
+        <li><a href="curriculo.pdf?v=2026-10-29" download="Curriculo_JoaoVitorQueiroz.pdf">Currículo em PDF</a></li>
       </ul>
     </div>
   </div>
@@ -294,6 +291,6 @@
 
 <div class="aviso-copia" id="aviso" role="status"></div>
 
-<script src="script.js?v=2026-10-29d"></script>
+<script src="script.js?v=2026-10-29e"></script>
 </body>
 </html>
