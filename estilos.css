@@ -157,12 +157,8 @@ h1 {
 }
 .abertura-texto { max-width: 40rem; }
 .lead { font-size: 1.25rem; line-height: 1.45; margin: 0 0 1rem; }
-.abertura-texto p:not(.lead) { color: var(--muted); margin: 0; }
+.abertura-texto p:not(.lead) { color: var(--muted); margin: 0; font-size: 1.0625rem; line-height: 1.6; }
 
-.estatisticas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; margin: 2.5rem 0 3rem; }
-.estatisticas > div { border-top: 1px solid var(--line); padding-top: 1rem; }
-.estatisticas dt { font-size: 3rem; font-weight: 300; line-height: 1.1; font-variant-numeric: tabular-nums; }
-.estatisticas dd { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.875rem; max-width: 22ch; }
 
 .secao { padding-top: 6rem; }
 .bloco { display: grid; grid-template-columns: repeat(16, minmax(0, 1fr)); column-gap: 2rem; }
@@ -331,7 +327,7 @@ pre { margin: 0; padding: 1rem; overflow-x: auto; font: 400 0.8125rem/1.65 var(-
 .lista-linha h3 { font-size: 1rem; font-weight: 600; }
 .lista + .subtitulo { margin-top: 3rem; }
 .etapas + .subtitulo { margin-top: 4rem; }
-.lista-linha h3 a { color: var(--link); }
+.lista-linha h3 a, .atividade h3 a { color: var(--link); }
 .lista-linha p { margin: 0.25rem 0 0; color: var(--muted); font-size: 0.875rem; }
 .lista-linha > p { margin: 0; color: var(--ink); }
 
@@ -379,8 +375,6 @@ pre { margin: 0; padding: 1rem; overflow-x: auto; font: 400 0.8125rem/1.65 var(-
   .wrap { padding-inline: 1rem; }
   .abertura { padding-top: 3rem; }
   .lead { font-size: 1.125rem; }
-  .estatisticas { grid-template-columns: minmax(0, 1fr); gap: 1rem; margin-top: 2rem; }
-  .estatisticas dt { font-size: 2.25rem; }
   .resumo, .guia ol { grid-template-columns: minmax(0, 1fr); }
   .atividade dl > div { grid-template-columns: minmax(0, 1fr); gap: 0.125rem; }
   .secao { padding-top: 4rem; }

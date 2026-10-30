@@ -42,9 +42,10 @@
 <main id="conteudo">
   <section class="abertura">
     <div class="wrap">
-      <h1>Tratamento, validação e publicação de dados de programas sociais</h1>
+      <h1>Sou João Vitor e trabalho com dados de programas sociais</h1>
       <div class="abertura-texto">
-        <p class="lead">Sou João Vitor Queiroz e trabalho na equipe de dados do Ministério do Desenvolvimento e Assistência Social (MDS). Todo mês, transformo as planilhas que as áreas do ministério enviam em arquivos de carga do VIS DATA, a plataforma de dados abertos do MDS, e confiro se o que foi publicado bate com a origem.</p>
+        <p class="lead">Faço parte da equipe de dados do Ministério do Desenvolvimento e Assistência Social (MDS). Todo mês, trato e valido as planilhas que as áreas do ministério enviam e gero as cargas do VIS DATA, a plataforma de dados do MDS. Também trabalho no MonitoraMDS, o painel em R Shiny que acompanha os programas sociais.</p>
+        <p>Entrei no MDS como estagiário em setembro de 2025 e, cinco meses depois, passei a fazer parte da equipe de dados. Aprendo rápido e gosto de deixar o trabalho mais simples para quem vem depois: reuni as rotinas de carga em um único notebook e escrevi tutoriais para a equipe. À noite, curso Ciência da Computação na UCB, com a mesma dedicação.</p>
         <div class="acoes">
           <a class="btn primario" href="#trabalho">Ver o que eu faço
             <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M18 6l-1.43 1.393L24.15 15H4v2h20.15l-7.58 7.573L18 26l10-10L18 6z"/></svg>
@@ -63,7 +64,7 @@
       <div class="bloco-conteudo">
         <h2 id="resumo-titulo" class="pergunta">Quem é você e o que procura?</h2>
         <dl class="resumo">
-          <div><dt>O que faço</dt><dd>Trato, valido e carrego dados de programas sociais no VIS DATA, de onde eles seguem para o painel MonitoraMDS e para os dados abertos do ministério.</dd></div>
+          <div><dt>O que faço</dt><dd>Trato, valido e carrego dados de programas sociais no VIS DATA e trabalho no MonitoraMDS, o painel do ministério em R Shiny.</dd></div>
           <div><dt>Onde</dt><dd>Departamento de Gestão da Informação do MDS, desde setembro de 2025.</dd></div>
           <div><dt>Ferramentas</dt><dd>Python (pandas), SQL, R e Shiny, Google Colab, Git.</dd></div>
           <div><dt>Formação</dt><dd>Ciência da Computação na Universidade Católica de Brasília, conclusão prevista para 2028.</dd></div>
@@ -72,11 +73,11 @@
 
         <h3 class="subtitulo">Neste portfólio</h3>
         <ol class="indice">
-          <li><a href="#trabalho"><span class="indice-pergunta">O que você faz no MDS?</span><span class="indice-secao">Atividades, ciclo de carga e onde os dados aparecem</span></a></li>
+          <li><a href="#trabalho"><span class="indice-pergunta">O que você faz no MDS?</span><span class="indice-secao">VIS DATA, MonitoraMDS e ciclo de carga</span></a></li>
           <li><a href="#demonstracao"><span class="indice-pergunta">Como você trata uma planilha com problemas?</span><span class="indice-secao">Demonstração interativa</span></a></li>
           <li><a href="#painel"><span class="indice-pergunta">Que tipo de dado passa pelo seu trabalho?</span><span class="indice-secao">Painel do Bolsa Família</span></a></li>
           <li><a href="#sql"><span class="indice-pergunta">Você sabe modelar um banco e escrever SQL?</span><span class="indice-secao">Projeto com 1,5 milhão de linhas</span></a></li>
-          <li><a href="#trajetoria"><span class="indice-pergunta">Qual é a sua trajetória?</span><span class="indice-secao">Experiência, formação e outros projetos</span></a></li>
+          <li><a href="#trajetoria"><span class="indice-pergunta">Qual é a sua trajetória?</span><span class="indice-secao">Experiência, formação, projetos e ferramentas</span></a></li>
         </ol>
       </div>
     </div>
@@ -87,13 +88,7 @@
       <p class="rotulo-secao">O que faço</p>
       <div class="bloco-conteudo">
         <h2 id="trabalho-titulo" class="pergunta">O que você faz no MDS?</h2>
-        <p class="resposta">Cuido do caminho que os dados de programas sociais percorrem até serem publicados no VIS DATA: recebo as planilhas das áreas, trato, valido, gero os arquivos de carga e confiro o resultado depois que ele está no ar.</p>
-
-        <dl class="estatisticas">
-          <div><dt>10</dt><dd>programas com cargas mensais, como Bolsa Família, Cadastro Único e BPC</dd></div>
-          <div><dt>40+</dt><dd>conjuntos de dados carregados no VIS DATA</dd></div>
-          <div><dt>154</dt><dd>registros com problema barrados antes de uma publicação</dd></div>
-        </dl>
+        <p class="resposta">Cuido do caminho que os dados de programas sociais percorrem até serem publicados no VIS DATA: recebo as planilhas das áreas, trato, valido, gero os arquivos de carga e confiro o resultado depois que ele está no ar. Também trabalho no MonitoraMDS, painel que usa esses dados para acompanhar os programas do ministério.</p>
 
         <div class="atividades">
           <article class="atividade">
@@ -102,6 +97,14 @@
               <div><dt>O que é</dt><dd>A publicação mensal dos dados do Bolsa Família, Cadastro Único, BPC, CEBAS, IGD-M e IGD-E, Acredita, MOBSUAS, Fomento Rural, ADA e Cozinhas Solidárias.</dd></div>
               <div><dt>Como faço</dt><dd>Leio as planilhas Excel enviadas pelas áreas, renomeio as colunas para os códigos de variável da plataforma, converto a UF em código IBGE, corrijo encoding, datas e CNPJ sem os zeros à esquerda e gero os CSVs de carga por conjunto de dados e período. Reuni essas rotinas em um único notebook no Google Colab.</dd></div>
               <div><dt>Ferramentas</dt><dd>Python, pandas, openpyxl, Google Colab</dd></div>
+            </dl>
+          </article>
+          <article class="atividade">
+            <h3><a href="https://mds.gov.br/monitora" target="_blank" rel="noopener">Painel MonitoraMDS</a></h3>
+            <dl>
+              <div><dt>O que é</dt><dd>O painel público em que o MDS acompanha os indicadores e as metas dos seus programas.</dd></div>
+              <div><dt>Como faço</dt><dd>Faço a manutenção dos gráficos dos módulos de SUAS (com CEBAS e CNEAS), Bolsa Família, BPC e Cadastro Único e fiz a limpeza do código do painel.</dd></div>
+              <div><dt>Ferramentas</dt><dd>R, Shiny</dd></div>
             </dl>
           </article>
           <article class="atividade">
@@ -126,14 +129,6 @@
             <dl>
               <div><dt>O que é</dt><dd>A revisão do novo Relatório de Informações do MDS.</dd></div>
               <div><dt>Como faço</dt><dd>Valido os dados exibidos no relatório e mapeio cada variável para a sua origem.</dd></div>
-            </dl>
-          </article>
-          <article class="atividade">
-            <h3>Painel MonitoraMDS</h3>
-            <dl>
-              <div><dt>O que é</dt><dd>O painel público em que o MDS acompanha os indicadores e as metas dos seus programas, com módulos de SUAS, Bolsa Família, BPC e Cadastro Único.</dd></div>
-              <div><dt>Como faço</dt><dd>Mantenho esses módulos e fiz a limpeza do código do painel.</dd></div>
-              <div><dt>Ferramentas</dt><dd>R, Shiny</dd></div>
             </dl>
           </article>
           <article class="atividade">
@@ -164,7 +159,7 @@
           </div>
           <div class="lista-linha">
             <span class="periodo">Painel público</span>
-            <div><h3><a href="https://mds.gov.br/monitora" target="_blank" rel="noopener">MonitoraMDS</a></h3><p>Painel em que o ministério acompanha os indicadores e as metas de programas como Bolsa Família, BPC, Cadastro Único e SUAS. Além de alimentar o painel com as cargas, mantenho módulos dele em R Shiny.</p></div>
+            <div><h3><a href="https://mds.gov.br/monitora" target="_blank" rel="noopener">MonitoraMDS</a></h3><p>Painel em que o ministério acompanha os indicadores e as metas de programas como Bolsa Família, BPC, Cadastro Único e SUAS.</p></div>
           </div>
           <div class="lista-linha">
             <span class="periodo">Dados abertos</span>
@@ -317,15 +312,15 @@
         <div class="lista">
           <div class="lista-linha">
             <span class="periodo">fev/2026 até hoje</span>
-            <div><h3>Equipe de dados do MDS</h3><p>Auxiliar de escritório (terceirizado), com atuação em tratamento, validação e carga de dados e na manutenção de painéis.</p></div>
+            <div><h3>Equipe de dados do MDS</h3><p>Auxiliar de escritório (terceirizado), com atuação em tratamento, validação e carga de dados no VIS DATA e no painel MonitoraMDS (R Shiny).</p></div>
           </div>
           <div class="lista-linha">
             <span class="periodo">set/2025 a fev/2026</span>
             <div><h3>Estágio no MDS</h3><p>Scripts em Python para processamento de dados, consultas SQL no DBeaver e tratamento de bases.</p></div>
           </div>
           <div class="lista-linha">
-            <span class="periodo">2024 a 2028</span>
-            <div><h3>Ciência da Computação, UCB</h3><p>Bacharelado em andamento na Universidade Católica de Brasília.</p></div>
+            <span class="periodo">2024 até hoje</span>
+            <div><h3>Ciência da Computação, UCB</h3><p>Bacharelado na Universidade Católica de Brasília, com conclusão prevista para 2028.</p></div>
           </div>
         </div>
 
@@ -353,11 +348,13 @@
           </div>
         </div>
 
-        <h3 class="subtitulo">Ferramentas</h3>
+        <h3 class="subtitulo">Como você usa cada ferramenta?</h3>
         <div class="lista">
-          <div class="lista-linha"><span class="periodo">Dados</span><p>Python (pandas, openpyxl), SQL, R e Shiny, Power BI</p></div>
-          <div class="lista-linha"><span class="periodo">Bancos</span><p>SQLite, MongoDB, DBeaver</p></div>
-          <div class="lista-linha"><span class="periodo">Desenvolvimento</span><p>Git e GitHub, Google Colab, Java, React, TypeScript, FastAPI</p></div>
+          <div class="lista-linha"><span class="periodo">Python e pandas</span><p>Uso todos os dias. É com eles que trato as planilhas e gero as cargas do VIS DATA, em notebooks no Google Colab.</p></div>
+          <div class="lista-linha"><span class="periodo">R e Shiny</span><p>Uso no MonitoraMDS, um painel em produção. Faço a manutenção dos gráficos dos módulos e fiz a limpeza do código, trabalhando sobre uma base que já existia e que outras pessoas usam.</p></div>
+          <div class="lista-linha"><span class="periodo">SQL</span><p>Consultas no DBeaver durante o estágio e o projeto de banco de dados com 1,5 milhão de linhas, com modelagem, CTEs e window functions.</p></div>
+          <div class="lista-linha"><span class="periodo">Git e GitHub</span><p>Versiono meus projetos e este portfólio.</p></div>
+          <div class="lista-linha"><span class="periodo">Também já usei</span><p>Power BI, SQLite, MongoDB, Java, React, TypeScript e FastAPI</p></div>
           <div class="lista-linha"><span class="periodo">Idiomas</span><p>Inglês intermediário</p></div>
         </div>
       </div>
