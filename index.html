@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <script src="tema.js"></script>
-<link rel="stylesheet" href="estilos.css?v=2026-10-29g">
+<link rel="stylesheet" href="estilos.css?v=2026-10-29h">
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -74,7 +74,7 @@
         <h3 class="subtitulo">Neste portfólio</h3>
         <ol class="indice">
           <li><a href="#trabalho"><span class="indice-pergunta">O que você faz no MDS?</span><span class="indice-secao">VIS DATA, MonitoraMDS e ciclo de carga</span></a></li>
-          <li><a href="#demonstracao"><span class="indice-pergunta">Como você trata uma planilha com problemas?</span><span class="indice-secao">Demonstração interativa</span></a></li>
+          <li><a href="#demonstracao"><span class="indice-pergunta">Como você trata uma planilha com problemas?</span><span class="indice-secao">Tratamento, conferência e código R</span></a></li>
           <li><a href="#painel"><span class="indice-pergunta">Que tipo de dado passa pelo seu trabalho?</span><span class="indice-secao">Painel do Bolsa Família</span></a></li>
           <li><a href="#sql"><span class="indice-pergunta">Você sabe modelar um banco e escrever SQL?</span><span class="indice-secao">Projeto com 1,5 milhão de linhas</span></a></li>
           <li><a href="#trajetoria"><span class="indice-pergunta">Qual é a sua trajetória?</span><span class="indice-secao">Experiência, formação, projetos e ferramentas</span></a></li>
@@ -208,6 +208,73 @@
             <div class="painel-topo"><span id="codigo-titulo">Leitura da planilha</span></div>
             <pre><code id="codigo"></code></pre>
             <ul class="log" id="log" aria-live="polite"></ul>
+          </div>
+        </div>
+
+        <h3 class="subtitulo">E depois de publicar, como você confere se o dado está certo?</h3>
+        <p class="resposta menor">Comparo o que foi publicado no VIS DATA com a planilha que a área enviou, município por município, pelo código IBGE. As tabelas abaixo são fictícias, mas têm os problemas que encontro nessa conferência: valores trocados entre municípios, município que ficou de fora da carga, código IBGE repetido e erro de digitação.</p>
+        <div class="guia">
+          <h3>Como usar</h3>
+          <ol>
+            <li>Compare as duas tabelas e tente achar os erros.</li>
+            <li>Clique em Conferir para ver o que o código encontra.</li>
+            <li>Clique em uma divergência para destacá-la nas duas tabelas ou gere outro caso.</li>
+          </ol>
+        </div>
+        <div class="conferencia">
+          <div class="conferencia-tabelas">
+            <div class="painel">
+              <div class="painel-topo"><span>planilha_area.xlsx</span><span class="rotulo-tabela">Origem</span></div>
+              <div class="rolagem"><table id="tab-origem"></table></div>
+            </div>
+            <div class="painel">
+              <div class="painel-topo"><span>visdata_publicado.csv</span><span class="rotulo-tabela">Publicado</span></div>
+              <div class="rolagem"><table id="tab-publicado"></table></div>
+            </div>
+          </div>
+          <div class="demo">
+            <div class="painel">
+              <div class="painel-topo"><span id="conf-status" aria-live="polite">Conferência pendente</span></div>
+              <ul class="divergencias" id="divergencias"></ul>
+              <div class="controles">
+                <button class="btn primario compacto" id="conferir" type="button">Conferir</button>
+                <button class="btn terciario compacto" id="outro-caso" type="button">Gerar outro caso</button>
+              </div>
+            </div>
+            <div class="painel codigo">
+              <div class="painel-topo"><span>conferencia.py</span></div>
+              <pre><code id="conf-codigo"></code></pre>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subtitulo">Como é o seu trabalho em R no MonitoraMDS?</h3>
+        <p class="resposta menor">Dou manutenção nos gráficos dos módulos e limpo o código. O exemplo abaixo foi criado para o portfólio, porque o código do painel é do ministério, mas mostra o tipo de mudança que faço: código repetido vira função, os dados são lidos uma vez só e o gráfico fica mais fácil de ler.</p>
+        <div class="guia">
+          <h3>Como usar</h3>
+          <ol>
+            <li>Alterne entre Antes e Depois.</li>
+            <li>Compare o código em R e o gráfico que ele gera.</li>
+            <li>Leia ao lado o que foi corrigido em cada versão.</li>
+          </ol>
+        </div>
+        <div class="r-demo">
+          <div class="painel-barra">
+            <div class="grupo-botoes" role="group" aria-label="Versão do código">
+              <button type="button" aria-pressed="true" data-versao="antes">Antes</button>
+              <button type="button" aria-pressed="false" data-versao="depois">Depois</button>
+            </div>
+          </div>
+          <div class="demo">
+            <div class="painel codigo">
+              <div class="painel-topo"><span>modulo_programas.R</span></div>
+              <pre class="r-pre"><code id="r-codigo"></code></pre>
+            </div>
+            <div class="painel r-lado">
+              <div class="grafico-r" id="r-grafico"></div>
+              <h4 class="r-mudancas-titulo" id="r-mudancas-titulo"></h4>
+              <ul class="r-mudancas" id="r-mudancas"></ul>
+            </div>
           </div>
         </div>
       </div>
@@ -409,5 +476,6 @@
 
 <script src="script.js?v=2026-10-29f"></script>
 <script src="sql.js?v=2026-10-29a"></script>
+<script src="demonstracoes.js?v=2026-10-29a"></script>
 </body>
 </html>
