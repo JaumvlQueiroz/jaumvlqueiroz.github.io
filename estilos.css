@@ -396,6 +396,11 @@ tr.destacada td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
 .r-mudancas.antes li::marker { color: var(--flag); }
 .r-mudancas.depois li::marker { color: #42BE65; }
 .r-navegacao { padding: 1.25rem 0 0; }
+.nota-fonte { margin: 1rem 0 0; padding: 1rem; background: var(--layer); color: var(--faint); font-size: 0.8125rem; line-height: 1.55; }
+.nota-fonte p { margin: 0; }
+.nota-fonte strong { color: var(--ink); font-weight: 600; }
+.explorador + .nota-fonte { margin: -1rem 0 2rem; }
+.fonte-dados strong { color: var(--ink); font-weight: 600; }
 .referencias { margin: 0.75rem 0 0; color: var(--faint); font-size: 0.8125rem; line-height: 1.5; }
 .referencias cite { font-style: italic; }
 

@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <script src="tema.js"></script>
-<link rel="stylesheet" href="estilos.css?v=2026-10-29i">
+<link rel="stylesheet" href="estilos.css?v=2026-10-29j">
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -50,7 +50,7 @@
     <div class="wrap">
       <h1>Sou João Vitor e trabalho com dados de programas sociais</h1>
       <div class="abertura-texto">
-        <p class="lead">Faço parte da equipe de dados do Ministério do Desenvolvimento e Assistência Social (MDS). Todo mês, trato e valido as planilhas que as áreas do ministério enviam e gero as cargas do VIS DATA, a plataforma de dados do MDS. Também trabalho no MonitoraMDS, o painel em R Shiny que acompanha os programas sociais.</p>
+        <p class="lead">Faço parte da equipe de dados do Ministério do Desenvolvimento e Assistência Social (MDS). Cuido da preparação, da validação e da publicação mensal dos dados de programas sociais no VIS DATA, a plataforma de dados do ministério. Também trabalho no MonitoraMDS, o painel em R Shiny que acompanha esses programas.</p>
         <p>Entrei no MDS como estagiário em setembro de 2025 e, cinco meses depois, passei a fazer parte da equipe de dados. Aprendo rápido e gosto de deixar o trabalho mais simples para quem vem depois: reuni as rotinas de carga em um único notebook e escrevi tutoriais para a equipe. À noite, curso Ciência da Computação na UCB, com a mesma dedicação.</p>
         <p>Meu objetivo, no futuro, é estar em uma sala de aula de universidade como professor. No caminho até lá, busco conhecimento como analista de dados para me tornar um bom profissional.</p>
         <div class="acoes">
@@ -285,7 +285,10 @@
               </div>
             </div>
           </div>
-          <p class="referencias">Referências: Cleveland e McGill, <cite>Graphical Perception</cite> (1984); Tufte, <cite>The Visual Display of Quantitative Information</cite> (1983); Borland e Taylor, <cite>Rainbow Color Map (Still) Considered Harmful</cite> (2007); Wilke, <cite>Fundamentals of Data Visualization</cite> (2019).</p>
+          <div class="nota-fonte">
+            <p><strong>Fonte dos dados do gráfico:</strong> números públicos de famílias atendidas pelo Bolsa Família por região em junho de 2026, divulgados pela <a href="https://www.gov.br/secom/pt-br/acompanhe-a-secom/noticias/2026/06/bolsa-familia-chega-a-19-3-milhoes-de-beneficiarios-em-todo-o-brasil-a-partir-desta-quarta-17" target="_blank" rel="noopener">Secom</a> e pelo <a href="https://www.gov.br/mds/pt-br/noticias-e-conteudos/desenvolvimento-social/noticias-desenvolvimento-social/em-junho-bolsa-familia-atende-mais-de-19-34-milhoes-de-lares-a-partir-desta-quarta-feira-17-06" target="_blank" rel="noopener">MDS</a>. Organizei os valores por região para este exemplo. São as mesmas fontes do painel de dados públicos, mais abaixo.</p>
+          </div>
+          <p class="referencias">Referências sobre visualização de dados: Cleveland e McGill, <cite>Graphical Perception</cite> (1984); Tufte, <cite>The Visual Display of Quantitative Information</cite> (1983); Borland e Taylor, <cite>Rainbow Color Map (Still) Considered Harmful</cite> (2007); Wilke, <cite>Fundamentals of Data Visualization</cite> (2019).</p>
         </div>
       </div>
     </div>
@@ -329,6 +332,7 @@
               <summary>Ver os dados em tabela</summary>
               <div class="rolagem" id="tabela-dados"></div>
             </details>
+            <p><strong>Dados públicos.</strong> Reuni os números oficiais divulgados pelo governo federal nas notícias abaixo, organizei em tabelas por região, estado e mês e usei para montar este painel.</p>
             <p>Referência: junho de 2026, exceto a visão mês a mês (janeiro a junho de 2026). Fontes: notícias oficiais do
               <a href="https://www.gov.br/secom/pt-br/acompanhe-a-secom/noticias/2026/06/bolsa-familia-chega-a-19-3-milhoes-de-beneficiarios-em-todo-o-brasil-a-partir-desta-quarta-17" target="_blank" rel="noopener">Secom (junho)</a>,
               <a href="https://www.gov.br/secom/pt-br/acompanhe-a-secom/noticias/2026/01/bolsa-familia-chega-a-18-77-milhoes-de-beneficiarios-do-pais-a-partir-desta-segunda-19" target="_blank" rel="noopener">janeiro</a>,
@@ -382,6 +386,10 @@
               <pre class="sql-pre"><code id="sql-codigo"></code></pre>
             </div>
           </div>
+        </div>
+
+        <div class="nota-fonte">
+          <p><strong>Fonte dos dados:</strong> <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank" rel="noopener">Brazilian E-Commerce Public Dataset by Olist</a>, publicado no Kaggle pela própria Olist sob a licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>. São dados públicos e anonimizados de cerca de 100 mil pedidos reais feitos entre 2016 e 2018. Baixei a base, tratei e modelei os dados em SQL para este projeto. O tratamento aparece nas perguntas 01 e 02 do explorador acima.</p>
         </div>
 
         <a class="tile clicavel repositorio" href="https://github.com/JaumvlQueiroz/ecommerce-sql-olist" target="_blank" rel="noopener">
