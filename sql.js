@@ -75,6 +75,8 @@ const EXEMPLOS_SQL = [
   "destaque": [
    0
   ],
+  "acao": "Cada problema tem um tratamento registrado. Assim, qualquer pessoa consegue saber por que um número ficou de fora de uma análise, em vez de descobrir a diferença depois.",
+  "rotulo_acao": "Por que isso importa",
   "resposta": "Doze verificações automáticas rodam a cada execução e registram quantas vezes cada problema aparece e como ele foi tratado. A maior delas encontrou 261.831 linhas repetidas na base de geolocalização.",
   "link": "https://github.com/JaumvlQueiroz/ecommerce-sql-olist/blob/main/sql/05_qualidade.sql"
  },
@@ -105,6 +107,8 @@ const EXEMPLOS_SQL = [
   "destaque": [
    2
   ],
+  "acao": "Com várias linhas para o mesmo CEP, qualquer JOIN entre clientes e geolocalização multiplicaria os pedidos e inflaria o faturamento sem dar erro nenhum.",
+  "rotulo_acao": "Por que isso importa",
   "resposta": "A base de geolocalização tinha várias linhas para o mesmo CEP, com grafias diferentes da cidade. Descartei as coordenadas fora do Brasil, mantive a grafia mais frequente de cada prefixo com ROW_NUMBER e calculei a coordenada média. A tabela caiu de 1.000.163 para 19.010 linhas.",
   "link": "https://github.com/JaumvlQueiroz/ecommerce-sql-olist/blob/main/sql/03_transformacao.sql"
  },
@@ -265,9 +269,11 @@ const EXEMPLOS_SQL = [
   "destaque": [
    10
   ],
+  "acao": "Planejar estoque, equipe e transportadoras com antecedência para novembro e acompanhar, durante o pico, se o prazo de entrega piora, já que atraso é o que mais derruba a nota do cliente.",
   "resposta": "Novembro de 2017, mês da Black Friday, teve o maior salto do período: o faturamento cresceu 52,1% em relação a outubro. A função LAG compara cada mês com o anterior.",
   "link": "https://github.com/JaumvlQueiroz/ecommerce-sql-olist/blob/main/consultas/02_faturamento_mensal.sql",
-  "trecho": false
+  "trecho": false,
+  "rotulo_acao": "O que eu faria com isso"
  },
  {
   "pergunta": "O atraso na entrega derruba a nota do cliente?",
@@ -328,9 +334,11 @@ const EXEMPLOS_SQL = [
   "destaque": [
    3
   ],
+  "acao": "Avisar o cliente assim que um pedido tiver risco de atrasar e priorizar os pedidos que já passaram do prazo. A partir de 4 dias de atraso, a nota cai pela metade, então cada dia recuperado conta.",
   "resposta": "Sim. Com a entrega no prazo, a nota média passa de 4,2. Com 4 a 7 dias de atraso, cai para 2,09, e 68% das notas são 1 ou 2.",
   "link": "https://github.com/JaumvlQueiroz/ecommerce-sql-olist/blob/main/consultas/05_atraso_e_avaliacao.sql",
-  "trecho": false
+  "trecho": false,
+  "rotulo_acao": "O que eu faria com isso"
  },
  {
   "pergunta": "Em quais estados a entrega demora mais?",
@@ -511,9 +519,47 @@ const EXEMPLOS_SQL = [
    0,
    26
   ],
+  "acao": "Rever a estimativa de prazo mostrada na compra para os estados do Norte e do Nordeste, para o cliente não receber uma promessa que não vai se cumprir, e avaliar transportadoras ou vendedores mais próximos dessas regiões.",
   "resposta": "No Norte. Em Roraima, a entrega leva 29,4 dias em média; em São Paulo, onde está a maior parte dos vendedores, 8,8 dias.",
   "link": "https://github.com/JaumvlQueiroz/ecommerce-sql-olist/blob/main/consultas/04_prazo_de_entrega_por_uf.sql",
-  "trecho": false
+  "trecho": false,
+  "rotulo_acao": "O que eu faria com isso"
+ },
+ {
+  "pergunta": "Quantos clientes voltam a comprar?",
+  "arquivo": "consultas/06_recompra.sql",
+  "tecnicas": "CTE, CASE, window function sobre agregação",
+  "sql": "WITH compras AS (\n    SELECT cliente_unico_id, COUNT(*) AS pedidos\n    FROM vw_pedidos\n    WHERE conta_no_faturamento\n    GROUP BY cliente_unico_id\n)\nSELECT\n    CASE\n        WHEN pedidos = 1 THEN '1 pedido'\n        WHEN pedidos = 2 THEN '2 pedidos'\n        ELSE '3 pedidos ou mais'\n    END AS faixa,\n    COUNT(*) AS clientes,\n    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS clientes_pct\nFROM compras\nGROUP BY faixa\nORDER BY MIN(pedidos);",
+  "colunas": [
+   "faixa",
+   "clientes",
+   "clientes_pct"
+  ],
+  "linhas": [
+   [
+    "1 pedido",
+    92096,
+    96.96
+   ],
+   [
+    "2 pedidos",
+    2651,
+    2.79
+   ],
+   [
+    "3 pedidos ou mais",
+    236,
+    0.25
+   ]
+  ],
+  "destaque": [
+   0
+  ],
+  "resposta": "Quase nenhum: 97% dos clientes fizeram um único pedido no período.",
+  "acao": "Antes de investir em retenção, verificar por categoria se a recompra é baixa em todas ou só nas de compra rara, como móveis. Nas categorias em que faz sentido comprar de novo, testar um cupom para a segunda compra e medir o resultado.",
+  "link": "https://github.com/JaumvlQueiroz/ecommerce-sql-olist/blob/main/consultas/06_recompra.sql",
+  "trecho": false,
+  "rotulo_acao": "O que eu faria com isso"
  },
  {
   "pergunta": "Quem são os 3 maiores vendedores de cada estado?",
@@ -991,9 +1037,11 @@ const EXEMPLOS_SQL = [
    1,
    2
   ],
+  "acao": "Usar o ranking para escolher, em cada estado, com quais vendedores fazer ações regionais, como frete promocional. Em São Paulo, como nenhum vendedor passa de 2,6%, a saída de um deles quase não muda o faturamento do estado.",
   "resposta": "O RANK com PARTITION BY monta um ranking separado para cada estado. Em São Paulo, o maior mercado, nem o primeiro colocado passa de 2,6% do faturamento do estado.",
   "link": "https://github.com/JaumvlQueiroz/ecommerce-sql-olist/blob/main/consultas/07_top_vendedores_por_uf.sql",
-  "trecho": false
+  "trecho": false,
+  "rotulo_acao": "O que eu faria com isso"
  },
  {
   "pergunta": "Quantos vendedores fazem a maior parte do faturamento?",
@@ -1017,9 +1065,11 @@ const EXEMPLOS_SQL = [
   "destaque": [
    0
   ],
+  "acao": "Acompanhar de perto os 540 vendedores que fazem 80% do faturamento, com alertas de atraso e de queda nas vendas, porque um problema com eles afeta quase toda a receita.",
   "resposta": "Poucos: 540 dos 3.053 vendedores (17,7%) somam 80% do faturamento, e 129 já respondem pela metade.",
   "link": "https://github.com/JaumvlQueiroz/ecommerce-sql-olist/blob/main/consultas/08_concentracao_de_vendedores.sql",
-  "trecho": false
+  "trecho": false,
+  "rotulo_acao": "O que eu faria com isso"
  }
 ];
 
@@ -1032,6 +1082,8 @@ const EXEMPLOS_SQL = [
   const codigo = document.getElementById("sql-codigo");
   const arquivo = document.getElementById("sql-arquivo");
   const tecnicas = document.getElementById("sql-tecnicas");
+  const acao = document.getElementById("sql-acao");
+  const acaoRotulo = document.getElementById("sql-acao-rotulo");
 
   const PALAVRAS = /\b(WITH|AS|SELECT|FROM|WHERE|AND|OR|NOT|IN|IS|NULL|JOIN|ON|GROUP|BY|ORDER|HAVING|LIMIT|CASE|WHEN|THEN|ELSE|END|DESC|ASC|DISTINCT|UNION|ALL|INSERT|INTO|OVER|PARTITION|WINDOW|ROWS|UNBOUNDED|PRECEDING|BETWEEN|EXISTS|CAST|REAL|COUNT|SUM|AVG|MIN|MAX|ROUND|LAG|RANK|ROW_NUMBER)\b/g;
 
@@ -1064,6 +1116,8 @@ const EXEMPLOS_SQL = [
     const exemplo = EXEMPLOS_SQL[indice];
     [...lista.children].forEach((b, i) => b.setAttribute("aria-pressed", String(i === indice)));
     resposta.textContent = exemplo.resposta;
+    acaoRotulo.textContent = exemplo.rotulo_acao;
+    acao.textContent = exemplo.acao;
     montarTabela(exemplo);
     const n = exemplo.linhas.length;
     total.textContent = `${n} ${n === 1 ? "linha" : "linhas"}`;

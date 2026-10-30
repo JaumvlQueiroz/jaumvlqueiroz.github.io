@@ -120,6 +120,7 @@
               <div><dt>O que é</dt><dd>A garantia de que o número publicado é o mesmo que a área enviou.</dd></div>
               <div><dt>Como faço</dt><dd>Antes da carga, procuro códigos IBGE duplicados ou ausentes, fontes erradas e valores trocados entre municípios. Depois da publicação, comparo o VIS DATA com a planilha de origem e envio os links para a área responsável validar.</dd></div>
               <div><dt>Resultado</dt><dd>No ciclo de agosto de 2026 do Bolsa Família, com 11 conjuntos de dados, barrei cerca de 154 registros municipais duplicados ou ausentes antes da publicação.</dd></div>
+              <div><dt>Impacto</dt><dd>Os números errados desses municípios não chegaram ao VIS DATA, que é consultado por gestores públicos e por qualquer cidadão.</dd></div>
               <div><dt>Ferramentas</dt><dd>Python, pandas</dd></div>
             </dl>
           </article>
@@ -356,12 +357,12 @@
         </dl>
 
         <h3 class="subtitulo">Que perguntas esse banco responde?</h3>
-        <p class="resposta menor">Escolha uma pergunta e veja a resposta, o resultado real da consulta e o SQL que gerou esse resultado.</p>
+        <p class="resposta menor">Escolha uma pergunta e veja a resposta, a decisão que ela permite tomar, o resultado real da consulta e o SQL que gerou esse resultado.</p>
         <div class="guia">
           <h3>Como usar</h3>
           <ol>
             <li>Escolha uma pergunta. As duas primeiras mostram como encontrei e tratei os problemas dos dados.</li>
-            <li>Leia a resposta e confira no resultado as linhas destacadas que a sustentam.</li>
+            <li>Leia a resposta, o que eu faria com ela e confira no resultado as linhas destacadas que a sustentam.</li>
             <li>Veja abaixo o SQL que gerou o resultado e abra o arquivo no GitHub pelo nome.</li>
           </ol>
         </div>
@@ -369,6 +370,7 @@
           <div class="perguntas-sql" id="perguntas-sql" role="group" aria-label="Perguntas"></div>
           <div class="explorador-conteudo">
             <p class="resposta-sql" id="sql-resposta" aria-live="polite"></p>
+            <div class="acao-sql"><strong id="sql-acao-rotulo"></strong><p id="sql-acao"></p></div>
             <div class="painel">
               <div class="painel-topo"><span>Resultado</span><span class="sql-total" id="sql-total"></span></div>
               <div class="rolagem resultado-sql"><table id="sql-tabela"></table></div>
