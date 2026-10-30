@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <script src="tema.js"></script>
-<link rel="stylesheet" href="estilos.css?v=2026-10-29h">
+<link rel="stylesheet" href="estilos.css?v=2026-10-29i">
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -257,33 +257,35 @@
         </div>
 
         <h3 class="subtitulo">Como é o seu trabalho em R no MonitoraMDS?</h3>
-        <p class="resposta menor">Dou manutenção nos gráficos dos módulos e limpo o código. O exemplo abaixo foi criado para o portfólio, porque o código do painel é do ministério, mas mostra o tipo de mudança que faço: código repetido vira função, os dados são lidos uma vez só e o gráfico fica mais fácil de ler.</p>
+        <p class="resposta menor">Dou manutenção nos gráficos dos módulos e limpo o código. O exemplo abaixo foi criado para o portfólio, porque o código do painel é do ministério, mas segue o caminho que uso: primeiro organizo o código sem mudar o resultado, depois melhoro o gráfico com base no que a pesquisa em visualização de dados mostra que funciona.</p>
         <div class="guia">
           <h3>Como usar</h3>
           <ol>
-            <li>Alterne entre Antes e Depois.</li>
-            <li>Compare o código em R e o gráfico que ele gera.</li>
-            <li>Leia ao lado o que foi corrigido em cada versão.</li>
+            <li>Avance pelos quatro passos, do código original ao gráfico final.</li>
+            <li>Em cada passo, as linhas novas do código aparecem em verde e o gráfico mostra o resultado.</li>
+            <li>Ao lado, leia o que mudou, por quê, e o que ainda falta corrigir.</li>
           </ol>
         </div>
         <div class="r-demo">
-          <div class="painel-barra">
-            <div class="grupo-botoes" role="group" aria-label="Versão do código">
-              <button type="button" aria-pressed="true" data-versao="antes">Antes</button>
-              <button type="button" aria-pressed="false" data-versao="depois">Depois</button>
-            </div>
-          </div>
+          <div class="passos-r" id="r-passos" role="group" aria-label="Passos da limpeza"></div>
           <div class="demo">
             <div class="painel codigo">
-              <div class="painel-topo"><span>modulo_programas.R</span></div>
+              <div class="painel-topo"><span id="r-arquivo">modulo_programas.R</span></div>
               <pre class="r-pre"><code id="r-codigo"></code></pre>
             </div>
             <div class="painel r-lado">
-              <div class="grafico-r" id="r-grafico"></div>
+              <div class="dispositivo-r" id="r-grafico"></div>
               <h4 class="r-mudancas-titulo" id="r-mudancas-titulo"></h4>
               <ul class="r-mudancas" id="r-mudancas"></ul>
+              <h4 class="r-mudancas-titulo" id="r-pendencias-titulo">O que ainda falta</h4>
+              <ul class="r-mudancas antes" id="r-pendencias"></ul>
+              <div class="controles r-navegacao">
+                <button class="btn terciario compacto" id="r-anterior" type="button">Passo anterior</button>
+                <button class="btn primario compacto" id="r-proximo" type="button">Próximo passo</button>
+              </div>
             </div>
           </div>
+          <p class="referencias">Referências: Cleveland e McGill, <cite>Graphical Perception</cite> (1984); Tufte, <cite>The Visual Display of Quantitative Information</cite> (1983); Borland e Taylor, <cite>Rainbow Color Map (Still) Considered Harmful</cite> (2007); Wilke, <cite>Fundamentals of Data Visualization</cite> (2019).</p>
         </div>
       </div>
     </div>
@@ -488,7 +490,7 @@
 <div class="aviso-copia" id="aviso" role="status"></div>
 
 <script src="script.js?v=2026-10-29f"></script>
-<script src="sql.js?v=2026-10-29a"></script>
-<script src="demonstracoes.js?v=2026-10-29a"></script>
+<script src="sql.js?v=2026-10-29c"></script>
+<script src="demonstracoes.js?v=2026-10-29b"></script>
 </body>
 </html>
