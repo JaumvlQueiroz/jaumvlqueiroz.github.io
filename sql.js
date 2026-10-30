@@ -556,7 +556,7 @@ const EXEMPLOS_SQL = [
    0
   ],
   "resposta": "Quase nenhum: 97% dos clientes fizeram um único pedido no período.",
-  "acao": "Antes de investir em retenção, verificar por categoria se a recompra é baixa em todas ou só nas de compra rara, como móveis. Nas categorias em que faz sentido comprar de novo, testar um cupom para a segunda compra e medir o resultado.",
+  "acao": "Conferi por categoria se isso era efeito de produtos de compra rara, como móveis. Não é: a recompra fica abaixo de 3,2% em todas as categorias com mais de mil clientes. Por isso eu testaria ações de segunda compra, como cupom e e-mail depois da entrega, comparando com um grupo que não recebe a ação.",
   "link": "https://github.com/JaumvlQueiroz/ecommerce-sql-olist/blob/main/consultas/06_recompra.sql",
   "trecho": false,
   "rotulo_acao": "O que eu faria com isso"
