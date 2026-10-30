@@ -6,9 +6,9 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>João Vitor Queiroz | Dados</title>
-<meta name="description" content="João Vitor Queiroz trabalha com tratamento e qualidade de dados de programas sociais no MDS e estuda Ciência da Computação na UCB.">
+<meta name="description" content="João Vitor Queiroz trata, valida e publica dados de programas sociais na equipe de dados do MDS. Portfólio com as atividades, uma demonstração de tratamento em pandas e um projeto de banco de dados em SQL.">
 <meta property="og:title" content="João Vitor Queiroz | Dados">
-<meta property="og:description" content="Tratamento e qualidade de dados de programas sociais no MDS.">
+<meta property="og:description" content="Tratamento, validação e publicação de dados de programas sociais no MDS.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#161616">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23161616'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' fill='%23FFFFFF' text-anchor='middle'%3EJV%3C/text%3E%3C/svg%3E">
@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <script src="tema.js"></script>
-<link rel="stylesheet" href="estilos.css?v=2026-10-29e">
+<link rel="stylesheet" href="estilos.css?v=2026-10-29f">
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -25,10 +25,11 @@
   <a class="marca" href="#">João Vitor <strong>Queiroz</strong></a>
   <nav class="navegacao" aria-label="Seções">
     <ul class="menu">
-      <li><a href="#trabalho">Trabalho</a></li>
+      <li><a href="#trabalho">O que faço</a></li>
       <li><a href="#demonstracao">Demonstração</a></li>
-      <li><a href="#painel">Painel</a></li>
-      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#painel">Dados públicos</a></li>
+      <li><a href="#sql">Projeto SQL</a></li>
+      <li><a href="#trajetoria">Trajetória</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
   </nav>
@@ -41,12 +42,11 @@
 <main id="conteudo">
   <section class="abertura">
     <div class="wrap">
-      <h1>Tratamento e qualidade de dados para políticas públicas</h1>
+      <h1>Tratamento, validação e publicação de dados de programas sociais</h1>
       <div class="abertura-texto">
-        <p class="lead">Sou João Vitor Queiroz. No Ministério do Desenvolvimento e Assistência Social (MDS), recebo as planilhas que as áreas do ministério enviam todo mês, trato, valido e gero os arquivos que alimentam o VIS DATA, a plataforma de dados abertos do MDS.</p>
-        <p>Estudo Ciência da Computação na UCB e procuro uma posição na área de dados.</p>
+        <p class="lead">Sou João Vitor Queiroz e trabalho na equipe de dados do Ministério do Desenvolvimento e Assistência Social (MDS). Todo mês, transformo as planilhas que as áreas do ministério enviam em arquivos de carga do VIS DATA, a plataforma de dados abertos do MDS, e confiro se o que foi publicado bate com a origem.</p>
         <div class="acoes">
-          <a class="btn primario" href="#demonstracao">Ver a demonstração
+          <a class="btn primario" href="#trabalho">Ver o que eu faço
             <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M18 6l-1.43 1.393L24.15 15H4v2h20.15l-7.58 7.573L18 26l10-10L18 6z"/></svg>
           </a>
           <a class="btn terciario" href="curriculo.pdf?v=2026-10-29" download="Curriculo_JoaoVitorQueiroz.pdf">Baixar currículo
@@ -55,57 +55,140 @@
         </div>
       </div>
     </div>
-    <div class="wrap">
-      <dl class="estatisticas">
-        <div><dt>40+</dt><dd>conjuntos de dados que carrego no VIS DATA</dd></div>
-        <div><dt>10+</dt><dd>programas sociais, como Bolsa Família, Cadastro Único e BPC</dd></div>
-        <div><dt>154</dt><dd>registros com problema barrados antes de uma publicação</dd></div>
-        <div><dt>1,5 mi</dt><dd>linhas no meu projeto de banco de dados em SQL</dd></div>
-      </dl>
+  </section>
+
+  <section class="secao" id="resumo" aria-labelledby="resumo-titulo">
+    <div class="wrap bloco">
+      <p class="rotulo-secao">Em resumo</p>
+      <div class="bloco-conteudo">
+        <h2 id="resumo-titulo" class="pergunta">Quem é você e o que procura?</h2>
+        <dl class="resumo">
+          <div><dt>O que faço</dt><dd>Trato, valido e carrego dados de programas sociais no VIS DATA, de onde eles seguem para o painel MonitoraMDS e para os dados abertos do ministério.</dd></div>
+          <div><dt>Onde</dt><dd>Departamento de Gestão da Informação do MDS, desde setembro de 2025.</dd></div>
+          <div><dt>Ferramentas</dt><dd>Python (pandas), SQL, R e Shiny, Google Colab, Git.</dd></div>
+          <div><dt>Formação</dt><dd>Ciência da Computação na Universidade Católica de Brasília, conclusão prevista para 2028.</dd></div>
+          <div><dt>O que procuro</dt><dd>Uma posição de analista de dados ou em tratamento e qualidade de dados.</dd></div>
+        </dl>
+
+        <h3 class="subtitulo">Neste portfólio</h3>
+        <ol class="indice">
+          <li><a href="#trabalho"><span class="indice-pergunta">O que você faz no MDS?</span><span class="indice-secao">Atividades, ciclo de carga e onde os dados aparecem</span></a></li>
+          <li><a href="#demonstracao"><span class="indice-pergunta">Como você trata uma planilha com problemas?</span><span class="indice-secao">Demonstração interativa</span></a></li>
+          <li><a href="#painel"><span class="indice-pergunta">Que tipo de dado passa pelo seu trabalho?</span><span class="indice-secao">Painel do Bolsa Família</span></a></li>
+          <li><a href="#sql"><span class="indice-pergunta">Você sabe modelar um banco e escrever SQL?</span><span class="indice-secao">Projeto com 1,5 milhão de linhas</span></a></li>
+          <li><a href="#trajetoria"><span class="indice-pergunta">Qual é a sua trajetória?</span><span class="indice-secao">Experiência, formação e outros projetos</span></a></li>
+        </ol>
+      </div>
     </div>
   </section>
 
   <section class="secao" id="trabalho" aria-labelledby="trabalho-titulo">
     <div class="wrap bloco">
-      <h2 id="trabalho-titulo" class="bloco-titulo">No MDS</h2>
+      <p class="rotulo-secao">O que faço</p>
       <div class="bloco-conteudo">
-        <p class="intro">Estou no Departamento de Gestão da Informação desde setembro de 2025, primeiro como estagiário e, desde fevereiro de 2026, na equipe de dados. Meu cargo formal é auxiliar de escritório (terceirizado); na prática, trabalho com dados.</p>
-        <div class="tiles">
-          <div class="tile">
-            <h3>Cargas no VIS DATA</h3>
-            <p>Escrevo os fluxos em Python e pandas que transformam as planilhas Excel das áreas em arquivos de carga. Juntei todas as rotinas em um único notebook no Google Colab, o que deixou o processo reprodutível e menos manual.</p>
-          </div>
-          <div class="tile">
-            <h3>Qualidade de dados</h3>
-            <p>No ciclo do Bolsa Família de agosto de 2026, com 11 conjuntos de dados, encontrei cerca de 154 registros municipais duplicados ou ausentes antes da publicação. Também faço o controle de qualidade do novo Relatório de Informações do MDS.</p>
-          </div>
-          <div class="tile">
+        <h2 id="trabalho-titulo" class="pergunta">O que você faz no MDS?</h2>
+        <p class="resposta">Cuido do caminho que os dados de programas sociais percorrem até serem publicados no VIS DATA: recebo as planilhas das áreas, trato, valido, gero os arquivos de carga e confiro o resultado depois que ele está no ar.</p>
+
+        <dl class="estatisticas">
+          <div><dt>10</dt><dd>programas com cargas mensais, como Bolsa Família, Cadastro Único e BPC</dd></div>
+          <div><dt>40+</dt><dd>conjuntos de dados carregados no VIS DATA</dd></div>
+          <div><dt>154</dt><dd>registros com problema barrados antes de uma publicação</dd></div>
+        </dl>
+
+        <div class="atividades">
+          <article class="atividade">
+            <h3>Cargas mensais no VIS DATA</h3>
+            <dl>
+              <div><dt>O que é</dt><dd>A publicação mensal dos dados do Bolsa Família, Cadastro Único, BPC, CEBAS, IGD-M e IGD-E, Acredita, MOBSUAS, Fomento Rural, ADA e Cozinhas Solidárias.</dd></div>
+              <div><dt>Como faço</dt><dd>Leio as planilhas Excel enviadas pelas áreas, renomeio as colunas para os códigos de variável da plataforma, converto a UF em código IBGE, corrijo encoding, datas e CNPJ sem os zeros à esquerda e gero os CSVs de carga por conjunto de dados e período. Reuni essas rotinas em um único notebook no Google Colab.</dd></div>
+              <div><dt>Ferramentas</dt><dd>Python, pandas, openpyxl, Google Colab</dd></div>
+            </dl>
+          </article>
+          <article class="atividade">
+            <h3>Validação antes e depois da publicação</h3>
+            <dl>
+              <div><dt>O que é</dt><dd>A garantia de que o número publicado é o mesmo que a área enviou.</dd></div>
+              <div><dt>Como faço</dt><dd>Antes da carga, procuro códigos IBGE duplicados ou ausentes, fontes erradas e valores trocados entre municípios. Depois da publicação, comparo o VIS DATA com a planilha de origem e envio os links para a área responsável validar.</dd></div>
+              <div><dt>Resultado</dt><dd>No ciclo de agosto de 2026 do Bolsa Família, com 11 conjuntos de dados, barrei cerca de 154 registros municipais duplicados ou ausentes antes da publicação.</dd></div>
+              <div><dt>Ferramentas</dt><dd>Python, pandas</dd></div>
+            </dl>
+          </article>
+          <article class="atividade">
             <h3>Dados orçamentários</h3>
-            <p>Montei os pipelines que transformam as exportações do Tesouro Gerencial em cargas de mais de sete programas, como Gás do Povo, PAA, Cisternas e Criança Feliz.</p>
-          </div>
-          <div class="tile">
-            <h3>Painéis e documentação</h3>
-            <p>Mantenho módulos do painel MonitoraMDS em R (Shiny) e escrevi tutoriais de três fluxos de carga para que outras pessoas da equipe consigam executá-los.</p>
-          </div>
+            <dl>
+              <div><dt>O que é</dt><dd>As cargas de execução orçamentária de mais de sete programas, como Gás do Povo, PAA, Cisternas e Criança Feliz.</dd></div>
+              <div><dt>Como faço</dt><dd>Montei os pipelines que leem as exportações em ZIP do Tesouro Gerencial e as transformam em arquivos de carga por programa.</dd></div>
+              <div><dt>Ferramentas</dt><dd>Python, pandas</dd></div>
+            </dl>
+          </article>
+          <article class="atividade">
+            <h3>Controle de qualidade do Relatório de Informações</h3>
+            <dl>
+              <div><dt>O que é</dt><dd>A revisão do novo Relatório de Informações do MDS.</dd></div>
+              <div><dt>Como faço</dt><dd>Valido os dados exibidos no relatório e mapeio cada variável para a sua origem.</dd></div>
+            </dl>
+          </article>
+          <article class="atividade">
+            <h3>Painel MonitoraMDS</h3>
+            <dl>
+              <div><dt>O que é</dt><dd>O painel público em que o MDS acompanha os indicadores e as metas dos seus programas, com módulos de SUAS, Bolsa Família, BPC e Cadastro Único.</dd></div>
+              <div><dt>Como faço</dt><dd>Mantenho esses módulos e fiz a limpeza do código do painel.</dd></div>
+              <div><dt>Ferramentas</dt><dd>R, Shiny</dd></div>
+            </dl>
+          </article>
+          <article class="atividade">
+            <h3>Atendimento e documentação</h3>
+            <dl>
+              <div><dt>O que é</dt><dd>O contato entre a equipe de dados e as áreas que enviam os dados.</dd></div>
+              <div><dt>Como faço</dt><dd>Respondo a caixa de e-mail institucional do VIS DATA e escrevi tutoriais de três fluxos de carga, nas normas da ABNT, para que outras pessoas da equipe consigam executá-los.</dd></div>
+            </dl>
+          </article>
         </div>
 
-        <h3 class="subtitulo">Como é um ciclo de carga</h3>
+        <h3 class="subtitulo">Como um dado sai da planilha e chega ao público?</h3>
+        <p class="resposta menor">Em cinco etapas, que se repetem a cada mês para cada conjunto de dados.</p>
         <ol class="etapas">
-          <li><strong>A planilha chega</strong><span>As áreas enviam os dados do mês pela caixa de e-mail do VIS DATA, que eu acompanho e respondo.</span></li>
+          <li><strong>A planilha chega</strong><span>As áreas enviam os dados do mês pela caixa de e-mail do VIS DATA.</span></li>
           <li><strong>Tratamento</strong><span>O notebook corrige encoding, datas e CNPJ e renomeia as colunas para os códigos de variável.</span></li>
           <li><strong>Validação</strong><span>Confiro códigos IBGE duplicados ou ausentes, fontes erradas e valores trocados entre municípios.</span></li>
           <li><strong>Arquivo de carga</strong><span>Os CSVs saem no layout que a plataforma espera, por conjunto de dados e período.</span></li>
-          <li><strong>Conferência</strong><span>Com o dado no ar, comparo o VIS DATA com a planilha de origem.</span></li>
+          <li><strong>Conferência</strong><span>Com o dado no ar, comparo o VIS DATA com a planilha de origem e a área valida.</span></li>
         </ol>
+
+        <h3 class="subtitulo">Onde esses dados aparecem depois de publicados?</h3>
+        <p class="resposta menor">O VIS DATA é a base de outras ferramentas do ministério. Quando a carga sai certa, o dado chega certo a todas elas.</p>
+        <div class="lista">
+          <div class="lista-linha">
+            <span class="periodo">Plataforma de dados</span>
+            <div><h3>VIS DATA</h3><p>Onde as cargas entram. Reúne os indicadores dos programas sociais por município, estado e período.</p></div>
+          </div>
+          <div class="lista-linha">
+            <span class="periodo">Painel público</span>
+            <div><h3><a href="https://mds.gov.br/monitora" target="_blank" rel="noopener">MonitoraMDS</a></h3><p>Painel em que o ministério acompanha os indicadores e as metas de programas como Bolsa Família, BPC, Cadastro Único e SUAS. Além de alimentar o painel com as cargas, mantenho módulos dele em R Shiny.</p></div>
+          </div>
+          <div class="lista-linha">
+            <span class="periodo">Dados abertos</span>
+            <div><h3>Dados abertos do MDS</h3><p>Os conjuntos também são publicados em formato aberto, para que qualquer pessoa possa baixar e analisar.</p></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="secao" id="demonstracao" aria-labelledby="demo-titulo">
     <div class="wrap bloco">
-      <h2 id="demo-titulo" class="bloco-titulo">Um tratamento na prática</h2>
+      <p class="rotulo-secao">Demonstração</p>
       <div class="bloco-conteudo">
-        <p class="intro">Esta planilha fictícia tem os problemas que mais aparecem no meu dia a dia. Execute os passos na ordem que quiser e veja o código em pandas que faz cada correção. Depois, gere outra planilha com problemas diferentes.</p>
+        <h2 id="demo-titulo" class="pergunta">Como você trata uma planilha que chega com problemas?</h2>
+        <p class="resposta">Com um script em pandas que corrige um tipo de problema por vez e registra o que mudou. A planilha abaixo é fictícia, mas tem os cinco problemas que mais aparecem no meu trabalho: nomes com acentuação quebrada, datas em formatos diferentes, CNPJ sem os zeros à esquerda, linhas duplicadas e código IBGE em branco.</p>
+        <div class="guia">
+          <h3>Como usar</h3>
+          <ol>
+            <li>Clique em qualquer passo, na ordem que quiser. As células corrigidas piscam na tabela.</li>
+            <li>À direita, veja o código em pandas que faz a correção e o registro do que mudou.</li>
+            <li>Gere outra planilha para ver problemas diferentes ou baixe o CSV tratado.</li>
+          </ol>
+        </div>
         <div class="demo">
           <div class="painel">
             <div class="painel-topo">
@@ -138,9 +221,18 @@
 
   <section class="secao" id="painel" aria-labelledby="painel-titulo">
     <div class="wrap bloco">
-      <h2 id="painel-titulo" class="bloco-titulo">Bolsa Família em números</h2>
+      <p class="rotulo-secao">Dados públicos</p>
       <div class="bloco-conteudo">
-        <p class="intro">Números oficiais divulgados pelo governo federal em 2026. É esse tipo de dado que passa pelas cargas do VIS DATA antes de chegar ao público.</p>
+        <h2 id="painel-titulo" class="pergunta">Que tipo de dado passa pelo seu trabalho?</h2>
+        <p class="resposta">Dados de programas sociais organizados por município, estado e mês, como os do Bolsa Família. Os números abaixo são os oficiais divulgados pelo governo federal em 2026 e mostram a escala desses dados. Eles não vêm das bases internas do MDS.</p>
+        <div class="guia">
+          <h3>Como usar</h3>
+          <ol>
+            <li>Escolha a visão: por região, por estado ou mês a mês.</li>
+            <li>Na visão por região, troque a medida entre famílias e valor repassado.</li>
+            <li>Passe o mouse sobre o gráfico para ver o valor exato ou abra a tabela com as fontes.</li>
+          </ol>
+        </div>
         <dl class="kpis">
           <div><dt>Famílias atendidas</dt><dd>19,3 mi</dd></div>
           <div><dt>Repasse do mês</dt><dd>R$ 13,08 bi</dd></div>
@@ -180,65 +272,52 @@
     </div>
   </section>
 
-  <section class="secao" id="projetos" aria-labelledby="proj-titulo">
+  <section class="secao" id="sql" aria-labelledby="sql-titulo">
     <div class="wrap bloco">
-      <h2 id="proj-titulo" class="bloco-titulo">Projetos</h2>
+      <p class="rotulo-secao">Projeto SQL</p>
       <div class="bloco-conteudo">
-        <div class="projetos">
-          <a class="tile clicavel destaque" href="https://github.com/JaumvlQueiroz/ecommerce-sql-olist" target="_blank" rel="noopener">
-            <div class="destaque-texto">
-              <h3>Análise de e-commerce com SQL</h3>
-              <p>Banco relacional com 1,5 milhão de linhas de dados públicos da Olist: nove tabelas com chaves e restrições, carga e transformação em SQL, 12 verificações de qualidade e dez consultas de negócio com window functions.</p>
-              <p>Uma das conclusões: quando a entrega atrasa de 4 a 7 dias, a nota média do cliente cai de 4,3 para 2,1.</p>
-              <p class="tec">SQL, SQLite, Python</p>
-            </div>
-            <pre class="trecho"><code><span class="tk-k">SELECT</span> uf, vendedor_id, faturamento,
+        <h2 id="sql-titulo" class="pergunta">Você sabe modelar um banco de dados e escrever SQL?</h2>
+        <p class="resposta">Sim. Neste projeto, montei do zero um banco relacional com 1,5 milhão de linhas de dados públicos da Olist, um marketplace brasileiro, e usei SQL em todas as etapas: carga, modelagem, limpeza, validação e análise.</p>
+
+        <dl class="resumo">
+          <div><dt>Modelagem</dt><dd>Nove tabelas com chaves primárias e estrangeiras, restrições CHECK e índices.</dd></div>
+          <div><dt>Carga e transformação</dt><dd>Os CSVs entram em tabelas de staging e são tipados, padronizados e deduplicados até o modelo final.</dd></div>
+          <div><dt>Qualidade</dt><dd>Doze verificações automáticas, cada uma com o tratamento aplicado. Uma delas encontrou 261.831 linhas repetidas na base de geolocalização.</dd></div>
+          <div><dt>Análise</dt><dd>Dez consultas que respondem perguntas de negócio com JOIN, CTE, view e window functions (LAG, RANK, ROW_NUMBER e soma acumulada).</dd></div>
+        </dl>
+
+        <a class="tile clicavel destaque" href="https://github.com/JaumvlQueiroz/ecommerce-sql-olist" target="_blank" rel="noopener">
+          <div class="destaque-texto">
+            <h3>Análise de e-commerce com SQL</h3>
+            <p>Um dos resultados: quando a entrega atrasa de 4 a 7 dias, a nota média do cliente cai de 4,3 para 2,1. Outro: 540 dos 3.053 vendedores respondem por 80% do faturamento.</p>
+            <p>No repositório, o README tem o diagrama do modelo e a pasta <code>resultados</code> tem a saída de cada consulta. Para recriar o banco, basta rodar <code>python executar.py</code>.</p>
+            <p class="tec">SQL, SQLite, Python</p>
+            <p class="abrir">Ver o repositório no GitHub</p>
+          </div>
+          <pre class="trecho"><code><span class="tk-k">SELECT</span> uf, vendedor_id, faturamento,
        <span class="tk-k">RANK</span>() <span class="tk-k">OVER</span> (
            <span class="tk-k">PARTITION BY</span> uf
            <span class="tk-k">ORDER BY</span> faturamento <span class="tk-k">DESC</span>
        ) <span class="tk-k">AS</span> posicao
 <span class="tk-k">FROM</span> por_vendedor;</code></pre>
-            <svg class="seta" viewBox="0 0 32 32" aria-hidden="true"><path d="M18 6l-1.43 1.393L24.15 15H4v2h20.15l-7.58 7.573L18 26l10-10L18 6z"/></svg>
-          </a>
-          <div class="tile">
-            <h3>Portal de gestão do Bolsa Família e Cadastro Único</h3>
-            <p>Réplica de um portal de gestão municipal, com modelagem dimensional e protótipo mobile do painel do Cadastro Único com 88 variáveis mapeadas.</p>
-            <p class="tec">FastAPI, SQLite, React</p>
-          </div>
-          <div class="tile">
-            <h3>Análise de vendas de e-commerce</h3>
-            <p>Análise exploratória da base Online Retail, com limpeza dos dados e versões sucessivas do notebook.</p>
-            <p class="tec">Python, pandas</p>
-          </div>
-          <div class="tile">
-            <h3>Previsão de sobrevivência no Titanic</h3>
-            <p>Modelo de classificação com Gradient Boosting sobre a base do Titanic.</p>
-            <p class="tec">Python, scikit-learn</p>
-          </div>
-          <div class="tile">
-            <h3>EduMarket</h3>
-            <p>Plataforma web full-stack desenvolvida como projeto acadêmico na UCB.</p>
-            <p class="tec">Desenvolvimento web</p>
-          </div>
-          <a class="tile clicavel" href="https://github.com/JaumvlQueiroz/Nlw" target="_blank" rel="noopener">
-            <h3>Nlw</h3>
-            <p>Front-end com JavaScript, HTML e CSS, integrado a uma API REST.</p>
-            <p class="tec">JavaScript, HTML, CSS</p>
-            <svg class="seta" viewBox="0 0 32 32" aria-hidden="true"><path d="M18 6l-1.43 1.393L24.15 15H4v2h20.15l-7.58 7.573L18 26l10-10L18 6z"/></svg>
-          </a>
-        </div>
+          <svg class="seta" viewBox="0 0 32 32" aria-hidden="true"><path d="M18 6l-1.43 1.393L24.15 15H4v2h20.15l-7.58 7.573L18 26l10-10L18 6z"/></svg>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="secao" id="experiencia" aria-labelledby="exp-titulo">
+  <section class="secao" id="trajetoria" aria-labelledby="traj-titulo">
     <div class="wrap bloco">
-      <h2 id="exp-titulo" class="bloco-titulo">Experiência e formação</h2>
+      <p class="rotulo-secao">Trajetória</p>
       <div class="bloco-conteudo">
+        <h2 id="traj-titulo" class="pergunta">Qual é a sua trajetória?</h2>
+        <p class="resposta">Entrei no MDS como estagiário em setembro de 2025 e, desde fevereiro de 2026, faço parte da equipe de dados. Em paralelo, curso Ciência da Computação e desenvolvo projetos próprios.</p>
+
+        <h3 class="subtitulo">Experiência e formação</h3>
         <div class="lista">
           <div class="lista-linha">
-            <span class="periodo">2026 até hoje</span>
-            <div><h3>Equipe de dados do MDS</h3><p>Auxiliar de escritório (terceirizado), com atuação em ETL, qualidade de dados e painéis.</p></div>
+            <span class="periodo">fev/2026 até hoje</span>
+            <div><h3>Equipe de dados do MDS</h3><p>Auxiliar de escritório (terceirizado), com atuação em tratamento, validação e carga de dados e na manutenção de painéis.</p></div>
           </div>
           <div class="lista-linha">
             <span class="periodo">set/2025 a fev/2026</span>
@@ -247,6 +326,30 @@
           <div class="lista-linha">
             <span class="periodo">2024 a 2028</span>
             <div><h3>Ciência da Computação, UCB</h3><p>Bacharelado em andamento na Universidade Católica de Brasília.</p></div>
+          </div>
+        </div>
+
+        <h3 class="subtitulo">Outros projetos</h3>
+        <div class="lista">
+          <div class="lista-linha">
+            <span class="periodo">FastAPI, SQLite, React</span>
+            <div><h3>Portal de gestão do Bolsa Família e Cadastro Único</h3><p>Réplica de um portal de gestão municipal, com modelagem dimensional e protótipo mobile do painel do Cadastro Único com 88 variáveis mapeadas.</p></div>
+          </div>
+          <div class="lista-linha">
+            <span class="periodo">Python, pandas</span>
+            <div><h3>Análise de vendas de e-commerce</h3><p>Análise exploratória da base Online Retail, com limpeza dos dados e versões sucessivas do notebook.</p></div>
+          </div>
+          <div class="lista-linha">
+            <span class="periodo">Python, scikit-learn</span>
+            <div><h3>Previsão de sobrevivência no Titanic</h3><p>Modelo de classificação com Gradient Boosting sobre a base do Titanic.</p></div>
+          </div>
+          <div class="lista-linha">
+            <span class="periodo">Desenvolvimento web</span>
+            <div><h3>EduMarket</h3><p>Plataforma web full-stack desenvolvida como projeto acadêmico na UCB.</p></div>
+          </div>
+          <div class="lista-linha">
+            <span class="periodo">JavaScript, HTML, CSS</span>
+            <div><h3><a href="https://github.com/JaumvlQueiroz/Nlw" target="_blank" rel="noopener">Nlw</a></h3><p>Front-end integrado a uma API REST.</p></div>
           </div>
         </div>
 
@@ -291,6 +394,6 @@
 
 <div class="aviso-copia" id="aviso" role="status"></div>
 
-<script src="script.js?v=2026-10-29e"></script>
+<script src="script.js?v=2026-10-29f"></script>
 </body>
 </html>
