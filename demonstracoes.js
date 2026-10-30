@@ -185,118 +185,269 @@ divergentes = ambos[ambos["familias_origem"] != ambos["familias_publicado"]]`;
     const grafico = document.getElementById("r-grafico");
     const mudancas = document.getElementById("r-mudancas");
     const titulo = document.getElementById("r-mudancas-titulo");
-    const botoes = [...document.querySelectorAll("[data-versao]")];
+    const pendencias = document.getElementById("r-pendencias");
+    const pendenciasTitulo = document.getElementById("r-pendencias-titulo");
+    const arquivo = document.getElementById("r-arquivo");
+    const lista = document.getElementById("r-passos");
+    const anterior = document.getElementById("r-anterior");
+    const proximo = document.getElementById("r-proximo");
 
     const REGIOES = [
       ["Centro-Oeste", 1030000], ["Nordeste", 8970000], ["Norte", 2490000], ["Sudeste", 5500000], ["Sul", 1320000]
     ];
+    const TOTAL = REGIOES.reduce((s, [, v]) => s + v, 0);
 
-    const VERSOES = {
-      antes: {
+    const PASSOS = [
+      {
+        nome: "Código original",
         codigo: `output$grafico_pbf <- renderPlot({
   dados <- read.csv("programas.csv")
   dados <- dados[dados$programa == "PBF", ]
-  x <- aggregate(dados$familias, by = list(dados$regiao), FUN = sum)
+  x <- aggregate(dados$familias, by = list(dados$regiao),
+                 FUN = sum)
   barplot(x$x, names.arg = x$Group.1, col = rainbow(5))
 })
 
 output$grafico_cadunico <- renderPlot({
   dados <- read.csv("programas.csv")
   dados <- dados[dados$programa == "CADUNICO", ]
-  x <- aggregate(dados$familias, by = list(dados$regiao), FUN = sum)
+  x <- aggregate(dados$familias, by = list(dados$regiao),
+                 FUN = sum)
   barplot(x$x, names.arg = x$Group.1, col = rainbow(5))
 })`,
-        titulo: "Problemas desta versão",
-        itens: [
-          "O mesmo bloco de código se repete para cada programa. Uma correção precisa ser feita em vários lugares.",
+        mudou: [],
+        falta: [
+          "O mesmo bloco se repete para cada programa. Uma correção precisa ser feita em vários lugares.",
           "O CSV é lido de novo toda vez que um gráfico é desenhado.",
           "Os nomes x e Group.1 não dizem o que guardam.",
-          "No gráfico, cada barra tem uma cor sem significado, as regiões ficam em ordem alfabética e o eixo usa notação científica."
+          "No gráfico, as cores do arco-íris não significam nada, as regiões estão em ordem alfabética e o eixo usa notação científica."
         ]
       },
-      depois: {
+      {
+        nome: "Função reaproveitada",
+        codigo: `dados <- read.csv("programas.csv")
+
+grafico_por_regiao <- function(dados, sigla) {
+  x <- aggregate(dados$familias[dados$programa == sigla],
+                 by = list(dados$regiao[dados$programa == sigla]),
+                 FUN = sum)
+  barplot(x$x, names.arg = x$Group.1, col = rainbow(5))
+}
+
+output$grafico_pbf <- renderPlot(
+  grafico_por_regiao(dados, "PBF")
+)
+output$grafico_cadunico <- renderPlot(
+  grafico_por_regiao(dados, "CADUNICO")
+)`,
+        mudou: [
+          "Os dois blocos viraram a função grafico_por_regiao. Uma correção agora vale para todos os gráficos.",
+          "O CSV é lido uma vez só, quando o painel abre.",
+          "O gráfico não mudou, e é de propósito: refatorar é melhorar o código sem alterar o resultado. Assim dá para conferir que nada quebrou."
+        ],
+        falta: [
+          "Os nomes x e Group.1 continuam sem dizer o que guardam.",
+          "O gráfico ainda tem os mesmos problemas."
+        ]
+      },
+      {
+        nome: "dplyr e ggplot",
         codigo: `library(dplyr)
 library(ggplot2)
 
 dados <- read.csv("programas.csv")
 
 grafico_por_regiao <- function(dados, sigla) {
-  dados |>
+  resumo <- dados |>
+    filter(programa == sigla) |>
+    group_by(regiao) |>
+    summarise(familias = sum(familias))
+
+  ggplot(resumo, aes(familias, reorder(regiao, familias))) +
+    geom_col(fill = "#0F62FE") +
+    scale_x_continuous(
+      labels = scales::label_number(big.mark = ".")
+    )
+}
+
+output$grafico_pbf <- renderPlot(
+  grafico_por_regiao(dados, "PBF")
+)
+output$grafico_cadunico <- renderPlot(
+  grafico_por_regiao(dados, "CADUNICO")
+)`,
+        mudou: [
+          "O código lê como uma sequência de passos: filtrar, agrupar, somar e desenhar. Os nomes resumo e familias dizem o que cada coisa guarda.",
+          "Uma cor só. Cor em gráfico deve significar alguma coisa, e o arco-íris sugere categorias e ordem que não existem (Borland e Taylor, 2007).",
+          "Barras ordenadas pelo valor. Comparar comprimentos alinhados a uma mesma base é uma das leituras mais precisas para o olho (Cleveland e McGill, 1984), e a ordem mostra o ranking sem esforço.",
+          "Barras na horizontal, para os nomes das regiões caberem sem ficar tortos ou cortados.",
+          "Números com separador brasileiro no lugar da notação científica."
+        ],
+        falta: [
+          "Os títulos dos eixos saem automáticos, como reorder(regiao, familias).",
+          "O gráfico não tem título, unidade nem fonte. Quem vê não sabe o que está olhando.",
+          "O fundo cinza e a grade puxam mais atenção do que os dados."
+        ]
+      },
+      {
+        nome: "Gráfico com boas práticas",
+        codigo: `library(dplyr)
+library(ggplot2)
+
+dados <- read.csv("programas.csv")
+
+grafico_por_regiao <- function(dados, sigla, titulo) {
+  resumo <- dados |>
     filter(programa == sigla) |>
     group_by(regiao) |>
     summarise(familias = sum(familias)) |>
-    ggplot(aes(x = reorder(regiao, familias), y = familias)) +
-    geom_col(fill = "#0F62FE") +
-    coord_flip() +
-    scale_y_continuous(labels = scales::label_number(big.mark = ".", decimal.mark = ",")) +
-    labs(x = NULL, y = "Famílias", title = paste(sigla, "por região"))
+    mutate(
+      participacao = familias / sum(familias),
+      milhoes = format(round(familias / 1e6, 2),
+                       decimal.mark = ","),
+      pct = round(100 * participacao),
+      rotulo = paste0(milhoes, " mi (", pct, "%)")
+    )
+
+  ggplot(resumo, aes(familias, reorder(regiao, familias))) +
+    geom_col(fill = "#0F62FE", width = 0.7) +
+    geom_text(aes(label = rotulo), hjust = -0.1, size = 3.5) +
+    scale_x_continuous(expand = expansion(mult = c(0, 0.35))) +
+    labs(
+      title = titulo,
+      subtitle = "Número de famílias, junho de 2026",
+      caption = "Fonte: MDS e Secom",
+      x = NULL, y = NULL
+    ) +
+    theme_minimal(base_size = 12) +
+    theme(
+      axis.text.x = element_blank(),
+      panel.grid = element_blank(),
+      plot.title = element_text(face = "bold")
+    )
 }
 
-output$grafico_pbf <- renderPlot(grafico_por_regiao(dados, "PBF"))
-output$grafico_cadunico <- renderPlot(grafico_por_regiao(dados, "CADUNICO"))`,
-        titulo: "O que mudou",
-        itens: [
-          "O código repetido virou a função grafico_por_regiao, usada pelos dois gráficos.",
-          "O CSV é lido uma vez só, quando o painel abre.",
-          "Os nomes das variáveis dizem o que cada uma guarda.",
-          "O gráfico tem uma cor só, barras ordenadas na horizontal, título e números com separador brasileiro."
-        ]
+output$grafico_pbf <- renderPlot(grafico_por_regiao(
+  dados, "PBF", "Nordeste tem 46% das famílias do Bolsa Família"
+))
+output$grafico_cadunico <- renderPlot(grafico_por_regiao(
+  dados, "CADUNICO", "Famílias no Cadastro Único por região"
+))`,
+        mudou: [
+          "O título diz a conclusão, e não só o assunto. Quem passa o olho já sai sabendo o principal.",
+          "Cada barra tem o valor e a participação escritos ao lado. Com os números na tela, o eixo e a grade deixam de ser necessários e saem, o que deixa só tinta que mostra dado (Tufte, 1983).",
+          "As barras começam no zero. Em gráfico de barras, o comprimento é a informação, e cortar o eixo exagera as diferenças.",
+          "Subtítulo com a unidade e o período, e a fonte dos dados no rodapé."
+        ],
+        falta: []
       }
-    };
+    ];
 
-    const svg = (conteudo, altura) => `<svg viewBox="0 0 400 ${altura}" role="img" aria-label="Famílias atendidas pelo Bolsa Família por região">${conteudo}</svg>`;
+    const svg = (conteudo, largura, altura) => `<svg viewBox="0 0 ${largura} ${altura}" role="img" aria-label="Famílias atendidas pelo Bolsa Família por região">${conteudo}</svg>`;
+    const fmt2 = (v) => (v / 1e6).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-    const graficoAntes = () => {
+    const graficoBase = () => {
       const cores = ["#FF0000", "#CCFF00", "#00FF66", "#0066FF", "#CC00FF"];
       const base = 220, topo = 16, esquerda = 48, max = 9000000;
       const escala = (v) => base - (v / max) * (base - topo);
       let partes = "";
       [0, 2e6, 4e6, 6e6, 8e6].forEach((v) => {
         const y = escala(v);
-        partes += `<line class="r-eixo-linha" x1="${esquerda - 6}" x2="${esquerda}" y1="${y}" y2="${y}"/><text class="r-texto" x="${esquerda - 10}" y="${y + 4}" text-anchor="end">${v === 0 ? "0e+00" : (v / 1e6) + "e+06"}</text>`;
+        partes += `<line class="dev-linha" x1="${esquerda - 6}" x2="${esquerda}" y1="${y}" y2="${y}"/><text class="dev-texto" x="${esquerda - 10}" y="${y + 4}" text-anchor="end">${v === 0 ? "0e+00" : (v / 1e6) + "e+06"}</text>`;
       });
-      partes += `<line class="r-eixo-linha" x1="${esquerda}" x2="${esquerda}" y1="${escala(8e6)}" y2="${base}"/>`;
-      const largura = 50, espaco = 14;
+      partes += `<line class="dev-linha" x1="${esquerda}" x2="${esquerda}" y1="${escala(8e6)}" y2="${base}"/>`;
       REGIOES.forEach(([nome, valor], i) => {
-        const x = esquerda + 14 + i * (largura + espaco);
+        const x = esquerda + 14 + i * 64;
         const y = escala(valor);
-        partes += `<rect x="${x}" y="${y}" width="${largura}" height="${base - y}" fill="${cores[i]}" stroke="#000" stroke-width="1"><title>${nome}: ${fmt(valor)}</title></rect>`;
-        partes += `<text class="r-texto pequeno" x="${x + largura / 2}" y="${base + 18}" text-anchor="middle">${nome}</text>`;
+        partes += `<rect x="${x}" y="${y}" width="50" height="${base - y}" fill="${cores[i]}" stroke="#000" stroke-width="1"><title>${nome}: ${fmt(valor)}</title></rect>`;
+        partes += `<text class="dev-texto pequeno" x="${x + 25}" y="${base + 18}" text-anchor="middle">${nome}</text>`;
       });
-      return svg(partes, 250);
+      return svg(partes, 400, 250);
     };
 
-    const graficoDepois = () => {
+    const graficoGgplot = () => {
       const ordenadas = [...REGIOES].sort((a, b) => b[1] - a[1]);
-      const esquerda = 92, direita = 385, topo = 44, altura = 34, max = 9000000;
+      const esquerda = 120, direita = 390, topo = 12, faixa = 40, max = 9000000 * 1.05;
       const escala = (v) => esquerda + (v / max) * (direita - esquerda);
-      const base = topo + ordenadas.length * altura;
-      let partes = `<text class="r-titulo" x="0" y="20">PBF por região</text>`;
+      const base = topo + ordenadas.length * faixa;
+      let partes = `<rect x="${esquerda}" y="${topo}" width="${direita - esquerda}" height="${base - topo}" fill="#EBEBEB"/>`;
+      [1.25e6, 3.75e6, 6.25e6, 8.75e6].forEach((v) => {
+        partes += `<line x1="${escala(v)}" x2="${escala(v)}" y1="${topo}" y2="${base}" stroke="#FFFFFF" stroke-width="0.6"/>`;
+      });
       [0, 2.5e6, 5e6, 7.5e6].forEach((v) => {
         const x = escala(v);
-        partes += `<line class="grade" x1="${x}" x2="${x}" y1="${topo - 6}" y2="${base}"/><text class="r-texto" x="${x}" y="${base + 18}" text-anchor="middle">${fmt(v)}</text>`;
+        partes += `<line x1="${x}" x2="${x}" y1="${topo}" y2="${base}" stroke="#FFFFFF" stroke-width="1.2"/><text class="dev-texto cinza" x="${x}" y="${base + 15}" text-anchor="middle">${fmt(v)}</text>`;
       });
       ordenadas.forEach(([nome, valor], i) => {
-        const y = topo + i * altura + 6;
-        partes += `<text class="r-texto" x="${esquerda - 10}" y="${y + 16}" text-anchor="end">${nome}</text>`;
-        partes += `<rect class="r-barra" x="${esquerda}" y="${y}" width="${escala(valor) - esquerda}" height="${altura - 12}"><title>${nome}: ${fmt(valor)} famílias</title></rect>`;
+        const centro = topo + i * faixa + faixa / 2;
+        partes += `<line x1="${esquerda}" x2="${direita}" y1="${centro}" y2="${centro}" stroke="#FFFFFF" stroke-width="1.2"/>`;
+        partes += `<rect x="${esquerda}" y="${centro - faixa * 0.45}" width="${escala(valor) - esquerda}" height="${faixa * 0.9}" fill="#0F62FE"><title>${nome}: ${fmt(valor)}</title></rect>`;
+        partes += `<text class="dev-texto cinza" x="${esquerda - 6}" y="${centro + 4}" text-anchor="end">${nome}</text>`;
       });
-      partes += `<text class="r-texto" x="${(esquerda + direita) / 2}" y="${base + 40}" text-anchor="middle">Famílias</text>`;
-      return svg(partes, base + 50);
+      partes += `<text class="dev-texto" x="${(esquerda + direita) / 2}" y="${base + 34}" text-anchor="middle">familias</text>`;
+      partes += `<text class="dev-texto" transform="translate(14 ${(topo + base) / 2}) rotate(-90)" text-anchor="middle">reorder(regiao, familias)</text>`;
+      return svg(partes, 400, base + 44);
     };
 
-    const mostrar = (versao) => {
-      const dados = VERSOES[versao];
-      botoes.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.versao === versao)));
-      codigo.innerHTML = colorir(dados.codigo, /(&lt;-|\|&gt;|\bfunction\b|\blibrary\b)/g);
-      grafico.innerHTML = versao === "antes" ? graficoAntes() : graficoDepois();
-      titulo.textContent = dados.titulo;
-      mudancas.className = `r-mudancas ${versao}`;
-      mudancas.innerHTML = dados.itens.map((t) => `<li>${escapar(t)}</li>`).join("");
+    const graficoFinal = () => {
+      const ordenadas = [...REGIOES].sort((a, b) => b[1] - a[1]);
+      const esquerda = 90, direita = 296, topo = 62, faixa = 38, max = 8970000;
+      const escala = (v) => esquerda + (v / max) * (direita - esquerda);
+      const base = topo + ordenadas.length * faixa;
+      let partes = `<text class="dev-titulo" x="6" y="22">Nordeste tem 46% das famílias do Bolsa Família</text>`;
+      partes += `<text class="dev-texto cinza" x="6" y="42">Número de famílias, junho de 2026</text>`;
+      ordenadas.forEach(([nome, valor], i) => {
+        const centro = topo + i * faixa + faixa / 2;
+        const pct = Math.round((100 * valor) / TOTAL);
+        partes += `<text class="dev-texto cinza" x="${esquerda - 8}" y="${centro + 4}" text-anchor="end">${nome}</text>`;
+        partes += `<rect class="dev-barra" x="${esquerda}" y="${centro - faixa * 0.35}" width="${escala(valor) - esquerda}" height="${faixa * 0.7}"><title>${nome}: ${fmt(valor)} famílias</title></rect>`;
+        partes += `<text class="dev-texto" x="${escala(valor) + 6}" y="${centro + 4}">${fmt2(valor)} mi (${pct}%)</text>`;
+      });
+      partes += `<text class="dev-texto cinza pequeno" x="394" y="${base + 26}" text-anchor="end">Fonte: MDS e Secom</text>`;
+      return svg(partes, 400, base + 36);
     };
 
-    botoes.forEach((b) => b.addEventListener("click", () => mostrar(b.dataset.versao)));
-    mostrar("antes");
+    const GRAFICOS = [graficoBase, graficoBase, graficoGgplot, graficoFinal];
+
+    PASSOS.forEach((passo, i) => {
+      const botao = document.createElement("button");
+      botao.type = "button";
+      botao.className = "passo-r";
+      botao.innerHTML = `<span class="n" aria-hidden="true">${i + 1}</span>${passo.nome}`;
+      botao.addEventListener("click", () => mostrar(i));
+      lista.appendChild(botao);
+    });
+
+    let atual = 0;
+    const mostrar = (indice) => {
+      atual = indice;
+      const passo = PASSOS[indice];
+      [...lista.children].forEach((b, i) => {
+        b.setAttribute("aria-pressed", String(i === indice));
+        b.classList.toggle("visto", i < indice);
+      });
+      const anteriores = indice > 0 ? new Set(PASSOS[indice - 1].codigo.split("\n").map((l) => l.trim())) : null;
+      codigo.innerHTML = passo.codigo.split("\n").map((linha) => {
+        const html = colorir(linha, /(&lt;-|\|&gt;|\bfunction\b|\blibrary\b)/g);
+        const nova = anteriores && linha.trim() && !anteriores.has(linha.trim());
+        return `<span class="linha${nova ? " nova" : ""}">${html}</span>`;
+      }).join("");
+      arquivo.textContent = indice > 0 ? "modulo_programas.R · linhas novas em verde" : "modulo_programas.R";
+      grafico.innerHTML = GRAFICOS[indice]();
+      titulo.textContent = indice === 0 ? "Problemas desta versão" : "O que mudou neste passo";
+      mudancas.className = `r-mudancas ${indice === 0 ? "antes" : "depois"}`;
+      mudancas.innerHTML = (indice === 0 ? passo.falta : passo.mudou).map((t) => `<li>${escapar(t)}</li>`).join("");
+      const restantes = indice === 0 ? [] : passo.falta;
+      pendenciasTitulo.hidden = restantes.length === 0;
+      pendencias.hidden = restantes.length === 0;
+      pendencias.innerHTML = restantes.map((t) => `<li>${escapar(t)}</li>`).join("");
+      anterior.disabled = indice === 0;
+      proximo.disabled = indice === PASSOS.length - 1;
+    };
+
+    anterior.addEventListener("click", () => mostrar(Math.max(0, atual - 1)));
+    proximo.addEventListener("click", () => mostrar(Math.min(PASSOS.length - 1, atual + 1)));
+    mostrar(0);
   };
 
   conferencia();

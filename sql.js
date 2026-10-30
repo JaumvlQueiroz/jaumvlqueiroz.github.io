@@ -33,7 +33,7 @@ const EXEMPLOS_SQL = [
    ],
    [
     "Mesmo review_id usado em mais de um pedido",
-    802,
+    789,
     "Chave primária composta (avaliacao_id, pedido_id)"
    ],
    [
@@ -290,52 +290,52 @@ const EXEMPLOS_SQL = [
   "linhas": [
    [
     "10 dias ou mais antes do prazo",
-    61849,
-    4.31,
-    9.1,
-    63.6
+    61523,
+    4.32,
+    8.9,
+    63.9
    ],
    [
     "Até 9 dias antes ou no prazo",
-    28087,
-    4.21,
-    10.4,
-    58.2
+    27920,
+    4.22,
+    10.1,
+    58.5
    ],
    [
     "1 a 3 dias de atraso",
-    1870,
-    3.28,
-    32.5,
-    33.0
+    1852,
+    3.29,
+    32.2,
+    33.2
    ],
    [
     "4 a 7 dias de atraso",
-    1802,
-    2.09,
-    68.0,
-    13.7
+    1748,
+    2.11,
+    67.6,
+    14.1
    ],
    [
     "8 a 14 dias de atraso",
-    1478,
+    1446,
     1.67,
-    80.3,
+    80.1,
     6.8
    ],
    [
     "Mais de 14 dias de atraso",
-    1384,
-    1.72,
-    78.4,
-    7.1
+    1335,
+    1.73,
+    78.2,
+    7.2
    ]
   ],
   "destaque": [
    3
   ],
   "acao": "Avisar o cliente assim que um pedido tiver risco de atrasar e priorizar os pedidos que já passaram do prazo. A partir de 4 dias de atraso, a nota cai pela metade, então cada dia recuperado conta.",
-  "resposta": "Sim. Com a entrega no prazo, a nota média passa de 4,2. Com 4 a 7 dias de atraso, cai para 2,09, e 68% das notas são 1 ou 2.",
+  "resposta": "Sim. Com a entrega no prazo, a nota média passa de 4,2. Com 4 a 7 dias de atraso, cai para 2,11, e 68% das notas são 1 ou 2.",
   "link": "https://github.com/JaumvlQueiroz/ecommerce-sql-olist/blob/main/consultas/05_atraso_e_avaliacao.sql",
   "trecho": false,
   "rotulo_acao": "O que eu faria com isso"

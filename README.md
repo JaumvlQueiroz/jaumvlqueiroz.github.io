@@ -1,12 +1,14 @@
 # Portfólio | João Vitor Queiroz
 
-Portfólio pessoal com meu trabalho em ETL e qualidade de dados de programas sociais no MDS.
+Portfólio pessoal com o meu trabalho de tratamento, validação e publicação de dados de programas sociais no MDS.
 
-O site inclui:
+Cada seção responde a uma pergunta:
 
-- uma demonstração interativa de tratamento de dados com pandas;
-- um painel com dados públicos do Bolsa Família;
-- a linha do tempo de um ciclo de carga no VIS DATA.
+- **O que você faz no MDS?** Atividades descritas com o que são, como faço e com quais ferramentas, e o ciclo de uma carga no VIS DATA.
+- **Como você trata uma planilha com problemas?** Demonstração interativa de tratamento com pandas.
+- **Que tipo de dado passa pelo seu trabalho?** Painel com dados públicos do Bolsa Família.
+- **Você sabe modelar um banco e escrever SQL?** Projeto [ecommerce-sql-olist](https://github.com/JaumvlQueiroz/ecommerce-sql-olist).
+- **Qual é a sua trajetória?** Experiência, formação, outros projetos e ferramentas.
 
 Feito com HTML, CSS e JavaScript puros, sem bibliotecas.
 
