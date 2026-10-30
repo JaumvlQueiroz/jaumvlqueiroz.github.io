@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <script src="tema.js"></script>
-<link rel="stylesheet" href="estilos.css?v=2026-10-29f">
+<link rel="stylesheet" href="estilos.css?v=2026-10-29g">
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -281,20 +281,36 @@
           <div><dt>Análise</dt><dd>Dez consultas que respondem perguntas de negócio com JOIN, CTE, view e window functions (LAG, RANK, ROW_NUMBER e soma acumulada).</dd></div>
         </dl>
 
-        <a class="tile clicavel destaque" href="https://github.com/JaumvlQueiroz/ecommerce-sql-olist" target="_blank" rel="noopener">
-          <div class="destaque-texto">
-            <h3>Análise de e-commerce com SQL</h3>
-            <p>Um dos resultados: quando a entrega atrasa de 4 a 7 dias, a nota média do cliente cai de 4,3 para 2,1. Outro: 540 dos 3.053 vendedores respondem por 80% do faturamento.</p>
-            <p>No repositório, o README tem o diagrama do modelo e a pasta <code>resultados</code> tem a saída de cada consulta. Para recriar o banco, basta rodar <code>python executar.py</code>.</p>
-            <p class="tec">SQL, SQLite, Python</p>
-            <p class="abrir">Ver o repositório no GitHub</p>
+        <h3 class="subtitulo">Que perguntas esse banco responde?</h3>
+        <p class="resposta menor">Escolha uma pergunta e veja a resposta, o resultado real da consulta e o SQL que gerou esse resultado.</p>
+        <div class="guia">
+          <h3>Como usar</h3>
+          <ol>
+            <li>Escolha uma pergunta. As duas primeiras mostram como encontrei e tratei os problemas dos dados.</li>
+            <li>Leia a resposta e confira no resultado as linhas destacadas que a sustentam.</li>
+            <li>Veja abaixo o SQL que gerou o resultado e abra o arquivo no GitHub pelo nome.</li>
+          </ol>
+        </div>
+        <div class="explorador">
+          <div class="perguntas-sql" id="perguntas-sql" role="group" aria-label="Perguntas"></div>
+          <div class="explorador-conteudo">
+            <p class="resposta-sql" id="sql-resposta" aria-live="polite"></p>
+            <div class="painel">
+              <div class="painel-topo"><span>Resultado</span><span class="sql-total" id="sql-total"></span></div>
+              <div class="rolagem resultado-sql"><table id="sql-tabela"></table></div>
+            </div>
+            <div class="painel codigo">
+              <div class="painel-topo"><a id="sql-arquivo" href="https://github.com/JaumvlQueiroz/ecommerce-sql-olist" target="_blank" rel="noopener"></a><span class="sql-tecnicas" id="sql-tecnicas"></span></div>
+              <pre class="sql-pre"><code id="sql-codigo"></code></pre>
+            </div>
           </div>
-          <pre class="trecho"><code><span class="tk-k">SELECT</span> uf, vendedor_id, faturamento,
-       <span class="tk-k">RANK</span>() <span class="tk-k">OVER</span> (
-           <span class="tk-k">PARTITION BY</span> uf
-           <span class="tk-k">ORDER BY</span> faturamento <span class="tk-k">DESC</span>
-       ) <span class="tk-k">AS</span> posicao
-<span class="tk-k">FROM</span> por_vendedor;</code></pre>
+        </div>
+
+        <a class="tile clicavel repositorio" href="https://github.com/JaumvlQueiroz/ecommerce-sql-olist" target="_blank" rel="noopener">
+          <h3>Análise de e-commerce com SQL</h3>
+          <p>No repositório estão as dez consultas, o diagrama do modelo no README e a saída de cada consulta na pasta <code>resultados</code>. Para recriar o banco, basta rodar <code>python executar.py</code>.</p>
+          <p class="tec">SQL, SQLite, Python</p>
+          <p class="abrir">Ver o repositório no GitHub</p>
           <svg class="seta" viewBox="0 0 32 32" aria-hidden="true"><path d="M18 6l-1.43 1.393L24.15 15H4v2h20.15l-7.58 7.573L18 26l10-10L18 6z"/></svg>
         </a>
       </div>
@@ -392,5 +408,6 @@
 <div class="aviso-copia" id="aviso" role="status"></div>
 
 <script src="script.js?v=2026-10-29f"></script>
+<script src="sql.js?v=2026-10-29a"></script>
 </body>
 </html>

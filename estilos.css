@@ -312,12 +312,32 @@ pre { margin: 0; padding: 1rem; overflow-x: auto; font: 400 0.8125rem/1.65 var(-
 .fonte-dados table { margin-top: 0.75rem; }
 .fonte-dados p { margin: 0.75rem 0 0; }
 
-.destaque { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
-.destaque h3 { font-size: 1.5rem; }
-.destaque p:not(.tec) { font-size: 1rem; }
-.destaque p code { font: 400 0.875em var(--mono); color: var(--ink); }
-.destaque .abrir { margin: 1rem 0 0; color: var(--link); font-size: 0.875rem; }
-.trecho { background: var(--code-bg); color: #F4F4F4; font-size: 0.75rem; }
+.repositorio p:not(.tec) { max-width: 44rem; font-size: 1rem; }
+.repositorio p code { font: 400 0.875em var(--mono); color: var(--ink); }
+.repositorio .abrir { margin: 1rem 0 0; color: var(--link); font-size: 0.875rem; }
+
+.explorador { display: grid; grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); gap: 1px; margin-bottom: 2rem; background: var(--line); border: 1px solid var(--line); }
+.perguntas-sql { display: flex; flex-direction: column; background: var(--bg); }
+.pergunta-sql {
+  display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.25rem; padding: 0.875rem 1rem;
+  border: 0; border-left: 3px solid transparent; border-bottom: 1px solid var(--line);
+  background: transparent; color: var(--muted); font-size: 0.875rem; line-height: 1.45; text-align: left; cursor: pointer;
+}
+.pergunta-sql .n { color: var(--faint); font: 400 0.8125rem var(--mono); }
+.pergunta-sql:hover { background: var(--layer); color: var(--ink); }
+.pergunta-sql[aria-pressed="true"] { border-left-color: var(--accent); background: var(--layer); color: var(--ink); font-weight: 600; }
+.pergunta-sql[aria-pressed="true"] .n { color: var(--link); }
+.explorador-conteudo { display: grid; gap: 1px; min-width: 0; background: var(--line); }
+.resposta-sql { margin: 0; padding: 1.25rem 1rem; background: var(--bg); font-size: 1.0625rem; line-height: 1.55; }
+.sql-total, .sql-tecnicas { color: var(--faint); font: 400 0.75rem var(--fonte); }
+.resultado-sql { max-height: 19rem; overflow: auto; }
+.resultado-sql th { position: sticky; top: 0; }
+.resultado-sql td:not(.num) { white-space: normal; }
+th.num, td.num { text-align: right; }
+tr.destacada td { background: var(--accent-soft); font-weight: 600; }
+tr.destacada td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+.codigo .painel-topo a { color: var(--link); }
+.sql-pre { max-height: 22rem; overflow: auto; }
 
 .lista { border-top: 1px solid var(--line); }
 .bloco-conteudo > .lista:first-child { border-top: 0; }
@@ -360,7 +380,10 @@ pre { margin: 0; padding: 1rem; overflow-x: auto; font: 400 0.8125rem/1.65 var(-
   .rotulo-secao { grid-column: 1 / -1; }
 }
 @media (max-width: 900px) {
-  .demo, .destaque { grid-template-columns: minmax(0, 1fr); }
+  .demo, .explorador { grid-template-columns: minmax(0, 1fr); }
+  .perguntas-sql { flex-direction: row; overflow-x: auto; scrollbar-width: thin; }
+  .pergunta-sql { flex: 0 0 15rem; border-left: 0; border-bottom: 3px solid transparent; border-right: 1px solid var(--line); }
+  .pergunta-sql[aria-pressed="true"] { border-bottom-color: var(--accent); }
   .cabecalho { flex-wrap: wrap; height: auto; }
   .marca { height: 3rem; padding-inline: 1rem; }
   .navegacao { order: 3; width: 100%; border-left: 0; border-top: 1px solid #393939; overflow-x: auto; scrollbar-width: none; }
