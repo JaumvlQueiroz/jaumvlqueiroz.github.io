@@ -432,7 +432,7 @@ output$grafico_cadunico <- renderPlot(grafico_por_regiao(
         const nova = anteriores && linha.trim() && !anteriores.has(linha.trim());
         return `<span class="linha${nova ? " nova" : ""}">${html}</span>`;
       }).join("");
-      arquivo.textContent = indice > 0 ? "modulo_programas.R · linhas novas em verde" : "modulo_programas.R";
+      arquivo.textContent = indice > 0 ? "modulo_programas.R · linhas novas destacadas" : "modulo_programas.R";
       grafico.innerHTML = GRAFICOS[indice]();
       titulo.textContent = indice === 0 ? "Problemas desta versão" : "O que mudou neste passo";
       mudancas.className = `r-mudancas ${indice === 0 ? "antes" : "depois"}`;

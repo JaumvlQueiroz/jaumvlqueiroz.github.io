@@ -144,7 +144,7 @@
     const mira = svg.querySelector(".mira");
     const circulos = [...svg.querySelectorAll(".ponto")];
     const captura = svg.querySelector(".captura");
-    captura.addEventListener("mousemove", (e) => {
+    const apontar = (e) => {
       const r = svg.getBoundingClientRect();
       const px = (e.clientX - r.left) * (W / r.width);
       let i = Math.round((px - m.l) / ((W - m.l - m.r) / (MESES.length - 1)));
@@ -157,8 +157,11 @@
       const escala = r.width / W;
       const rArea = area.getBoundingClientRect();
       posicionarDica(dica, r.left - rArea.left + x(i) * escala, r.top - rArea.top + y(d.familias) * escala);
-    });
-    captura.addEventListener("mouseleave", () => {
+    };
+    captura.addEventListener("pointermove", apontar);
+    captura.addEventListener("pointerdown", apontar);
+    captura.addEventListener("pointerleave", (e) => {
+      if (e.pointerType === "touch") return;
       mira.setAttribute("opacity", "0");
       circulos.forEach((c) => c.setAttribute("r", 4.5));
       dica.classList.remove("visivel");

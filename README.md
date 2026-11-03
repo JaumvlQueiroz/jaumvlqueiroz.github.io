@@ -26,6 +26,8 @@ As demonstrações usam dados fictícios ou públicos. Nada vem das bases intern
 
 HTML, CSS e JavaScript, sem bibliotecas nem etapa de build. Tema claro e escuro, layout responsivo e Content Security Policy sem scripts ou estilos inline.
 
+Acessibilidade: navegação completa pelo teclado, contraste conferido, links sublinhados no texto, alvos de toque de 44 px no celular e informação que nunca depende só da cor. O site foi testado com a verificação automática do axe, sem nenhuma violação, e com simulação de daltonismo (deuteranopia, protanopia e visão sem cor).
+
 ## Arquivos
 
 | Arquivo | Conteúdo |
@@ -34,6 +36,7 @@ HTML, CSS e JavaScript, sem bibliotecas nem etapa de build. Tema claro e escuro,
 | `estilos.css` | Visual, temas e responsividade |
 | `tema.js` | Aplica o tema escolhido antes de a página aparecer |
 | `script.js` | Painel do Bolsa Família e demonstração com pandas |
+| `navegacao.js` | Destaque da seção atual no menu e acesso por teclado às áreas com rolagem |
 | `demonstracoes.js` | Conferência de dados e refatoração em R |
 | `sql.js` | Explorador SQL, com os resultados gerados pelo projeto ecommerce-sql-olist |
 | `curriculo.pdf` | Currículo para download |

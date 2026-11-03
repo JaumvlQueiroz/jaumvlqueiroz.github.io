@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <script src="tema.js"></script>
-<link rel="stylesheet" href="estilos.css?v=2026-11-02">
+<link rel="stylesheet" href="estilos.css?v=2026-11-03b">
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -40,7 +40,7 @@
     </ul>
   </nav>
   <div class="cabecalho-acoes">
-    <a class="cabecalho-link" href="curriculo.pdf?v=2026-11-02b" download="Curriculo_JoaoVitorQueiroz.pdf">Currículo</a>
+    <a class="cabecalho-link" href="curriculo.pdf?v=2026-11-02b" target="_blank" rel="noopener">Currículo</a>
     <button class="tema" id="tema" type="button" aria-label="Alternar tema"></button>
   </div>
 </header>
@@ -187,7 +187,7 @@
           <h3>Como usar</h3>
           <ol>
             <li>Clique em qualquer passo, na ordem que quiser. As células corrigidas piscam na tabela.</li>
-            <li>À direita, veja o código em pandas que faz a correção e o registro do que mudou.</li>
+            <li>No painel de código, veja o trecho em pandas que faz a correção e o registro do que mudou.</li>
             <li>Gere outra planilha para ver problemas diferentes ou baixe o CSV tratado.</li>
           </ol>
         </div>
@@ -197,7 +197,7 @@
               <span>repasses_municipios.xlsx</span>
               <span class="problemas" id="problemas" aria-live="polite"></span>
             </div>
-            <div class="rolagem">
+            <div class="rolagem" data-rolagem role="region" aria-label="Planilha de exemplo">
               <table>
                 <thead><tr><th>municipio</th><th>uf</th><th>codigo_ibge</th><th>referencia</th><th>cnpj</th></tr></thead>
                 <tbody id="tabela"></tbody>
@@ -213,7 +213,7 @@
           </div>
           <div class="painel codigo">
             <div class="painel-topo"><span id="codigo-titulo">Leitura da planilha</span></div>
-            <pre><code id="codigo"></code></pre>
+            <pre data-rolagem role="region" aria-label="Código do tratamento em pandas"><code id="codigo"></code></pre>
             <ul class="log" id="log" aria-live="polite"></ul>
           </div>
         </div>
@@ -232,11 +232,11 @@
           <div class="conferencia-tabelas">
             <div class="painel">
               <div class="painel-topo"><span>planilha_area.xlsx</span><span class="rotulo-tabela">Origem</span></div>
-              <div class="rolagem"><table id="tab-origem"></table></div>
+              <div class="rolagem" data-rolagem role="region" aria-label="Tabela de origem"><table id="tab-origem"></table></div>
             </div>
             <div class="painel">
               <div class="painel-topo"><span>visdata_publicado.csv</span><span class="rotulo-tabela">Publicado</span></div>
-              <div class="rolagem"><table id="tab-publicado"></table></div>
+              <div class="rolagem" data-rolagem role="region" aria-label="Tabela publicada"><table id="tab-publicado"></table></div>
             </div>
           </div>
           <div class="demo">
@@ -250,7 +250,7 @@
             </div>
             <div class="painel codigo">
               <div class="painel-topo"><span>conferencia.py</span></div>
-              <pre><code id="conf-codigo"></code></pre>
+              <pre data-rolagem role="region" aria-label="Código da conferência"><code id="conf-codigo"></code></pre>
             </div>
           </div>
         </div>
@@ -261,8 +261,8 @@
           <h3>Como usar</h3>
           <ol>
             <li>Avance pelos quatro passos, do código original ao gráfico final.</li>
-            <li>Em cada passo, as linhas novas do código aparecem em verde e o gráfico mostra o resultado.</li>
-            <li>Ao lado, leia o que mudou, por quê, e o que ainda falta corrigir.</li>
+            <li>Em cada passo, as linhas novas do código ficam destacadas e o gráfico mostra o resultado.</li>
+            <li>Junto ao gráfico, leia o que mudou, por quê, e o que ainda falta corrigir.</li>
           </ol>
         </div>
         <div class="r-demo">
@@ -270,7 +270,7 @@
           <div class="demo">
             <div class="painel codigo">
               <div class="painel-topo"><span id="r-arquivo">modulo_programas.R</span></div>
-              <pre class="r-pre"><code id="r-codigo"></code></pre>
+              <pre class="r-pre" data-rolagem role="region" aria-label="Código em R"><code id="r-codigo"></code></pre>
             </div>
             <div class="painel r-lado">
               <div class="dispositivo-r" id="r-grafico"></div>
@@ -304,7 +304,7 @@
           <ol>
             <li>Escolha a visão: por região, por estado ou mês a mês.</li>
             <li>Na visão por região, troque a medida entre famílias e valor repassado.</li>
-            <li>Passe o mouse sobre o gráfico para ver o valor exato ou abra a tabela com as fontes.</li>
+            <li>Passe o mouse ou toque no gráfico para ver o valor exato, ou abra a tabela com as fontes.</li>
           </ol>
         </div>
         <dl class="kpis">
@@ -334,7 +334,7 @@
           <div class="fonte-dados">
             <details>
               <summary>Ver os dados em tabela</summary>
-              <div class="rolagem" id="tabela-dados"></div>
+              <div class="rolagem" id="tabela-dados" data-rolagem role="region" aria-label="Dados do painel em tabela"></div>
             </details>
             <p><strong>Dados públicos.</strong> Reuni os números oficiais divulgados pelo governo federal nas notícias abaixo, organizei em tabelas por região, estado e mês e usei para montar este painel.</p>
             <p>Referência: junho de 2026, exceto a visão mês a mês (janeiro a junho de 2026). Fontes: notícias oficiais do
@@ -383,11 +383,11 @@
             <div class="acao-sql"><strong id="sql-acao-rotulo"></strong><p id="sql-acao"></p></div>
             <div class="painel">
               <div class="painel-topo"><span>Resultado</span><span class="sql-total" id="sql-total"></span></div>
-              <div class="rolagem resultado-sql"><table id="sql-tabela"></table></div>
+              <div class="rolagem resultado-sql" data-rolagem role="region" aria-label="Resultado da consulta"><table id="sql-tabela"></table></div>
             </div>
             <div class="painel codigo">
               <div class="painel-topo"><a id="sql-arquivo" href="https://github.com/JaumvlQueiroz/ecommerce-sql-olist" target="_blank" rel="noopener"></a><span class="sql-tecnicas" id="sql-tecnicas"></span></div>
-              <pre class="sql-pre"><code id="sql-codigo"></code></pre>
+              <pre class="sql-pre" data-rolagem role="region" aria-label="Código SQL da consulta"><code id="sql-codigo"></code></pre>
             </div>
           </div>
         </div>
@@ -489,20 +489,22 @@
       <ul class="links">
         <li><a href="https://www.linkedin.com/in/joaovlqueiroz/" target="_blank" rel="noopener">LinkedIn</a></li>
         <li><a href="https://github.com/JaumvlQueiroz" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="curriculo.pdf?v=2026-11-02b" download="Curriculo_JoaoVitorQueiroz.pdf">Currículo em PDF</a></li>
+        <li><a href="curriculo.pdf?v=2026-11-02b" target="_blank" rel="noopener">Currículo em PDF</a></li>
       </ul>
     </div>
   </div>
   <footer class="rodape wrap">
     <span>João Vitor Queiroz, Brasília</span>
+    <span>Testado com verificação automática de acessibilidade (axe) e simulação de daltonismo</span>
     <span>2026</span>
   </footer>
 </section>
 
 <div class="aviso-copia" id="aviso" role="status"></div>
 
-<script src="script.js?v=2026-10-29f"></script>
+<script src="script.js?v=2026-11-03"></script>
+<script src="navegacao.js?v=2026-11-03"></script>
 <script src="sql.js?v=2026-10-29c"></script>
-<script src="demonstracoes.js?v=2026-10-29b"></script>
+<script src="demonstracoes.js?v=2026-11-03"></script>
 </body>
 </html>
